@@ -151,7 +151,7 @@ export default function VideoPlayer({ src, thumbnail, title }: VideoPlayerProps)
   if (!src) {
     return (
       <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden group cursor-pointer">
-        <img src={"/video-bg.jpeg" || "/placeholder.svg"} alt={title} className="w-full h-full object-cover" />
+        <img src={thumbnail || "/placeholder.svg"} alt={title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
           <div className="bg-blue-600 hover:bg-blue-700 rounded-full p-6 transition-colors">
             <Play className="w-12 h-12 text-white ml-1" />

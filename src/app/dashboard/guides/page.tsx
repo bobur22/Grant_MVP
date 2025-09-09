@@ -26,12 +26,12 @@ const tutorials = {
   Toshkent: {
     title: "Toshkent viloyati uchun yo'riqnoma",
     description: "Toshkent viloyatidagi foydalanuvchilar uchun maxsus ko'rsatmalar va qo'llanmalar.",
-    thumbnail: "/professional-meeting-room-with-5-people-discussing.jpg",
+    thumbnail: "/office.jpg",
   },
   Buxor: {
     title: "Buxor viloyati uchun yo'riqnoma",
     description: "Buxor viloyatidagi jarayonlar va tizimdan foydalanish bo'yicha batafsil ma'lumotlar.",
-    thumbnail: "/business-conference-room-meeting.jpg",
+    thumbnail: "/office.jpg",
   },
   // Add more tutorials for other regions as needed
 }
@@ -138,7 +138,7 @@ export default function GuidesPage() {
               <VideoPlayer
                 thumbnail={currentTutorial.thumbnail}
                 title={currentTutorial.title}
-                // src="/sample-video.mp4" // Uncomment when you have actual video files
+                src="/file_example_MP4_480_1_5MG.mp4" // Uncomment when you have actual video files
               />
             </div>
 
