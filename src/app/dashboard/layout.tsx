@@ -50,7 +50,7 @@ export default function DashboardLayout({
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-[#002B5C] flex">
+      <div className="h-screen bg-[#002B5C] flex">
         {/* Sidebar */}
         <div
           className={`${isSidebarCollapsed ? "w-16" : "w-64"} bg-[#002B55] border-r border-gray-800 transition-all duration-300 ease-in-out flex flex-col`}
@@ -143,7 +143,7 @@ export default function DashboardLayout({
             </div>
           </header>
 
-          <main className="flex-1 p-6 overflow-auto bg-[#061626]">{children}</main>
+          <main className="flex-1 p-6 overflow-auto  bg-[#061626]">{children}</main>
         </div>
       </div>
     </ProtectedRoute>
