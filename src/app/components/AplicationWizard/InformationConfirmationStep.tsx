@@ -130,7 +130,7 @@ export default function InformationConfirmationStep({
           >
             Bekor qilish
           </Button>
-          <Button onClick={onSubmit} className="bg-orange-500 hover:bg-orange-600">
+          <Button onClick={onSubmit} className="bg-[#FFB222] hover:bg-[#FFB222]/90 text-white">
             Saqlash
           </Button>
         </div>

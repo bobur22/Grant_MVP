@@ -106,14 +106,14 @@ export default function ApplicationWizard({ isOpen, onClose, service }: Applicat
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-[#002B5C] border-none text-white p-0">
         <div className="relative">
           {/* Close button */}
-          <Button
+          {/* <Button
             variant="ghost"
             size="icon"
             className="absolute top-4 right-4 z-10 text-white hover:bg-white/10"
             onClick={handleClose}
           >
             <X className="h-4 w-4" />
-          </Button>
+          </Button> */}
 
           <div className="p-6">
             {/* Header */}
@@ -123,7 +123,7 @@ export default function ApplicationWizard({ isOpen, onClose, service }: Applicat
                   <img
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
-                    className="w-full h-full object-contain"
+                    className="w-[30px] h-full object-cover"
                   />
                 </div>
                 <div>

@@ -95,7 +95,7 @@ export default function ServicesPage() {
                 <img
                   src={service.image || "/placeholder.svg"}
                   alt={service.title}
-                  className="w-full h-full object-contain"
+                  className="w-[76px] h-[106px] object-cover"
                 />
               </div>
               <h3 className="text-gray-800 font-medium mb-4 text-sm leading-tight">{service.title}</h3>

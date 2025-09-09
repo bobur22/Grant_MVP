@@ -178,7 +178,7 @@ export default function PersonalInfoStep({ data, onUpdate, onNext, onCancel }: P
         >
           Bekor qilish
         </Button>
-        <Button onClick={handleNext} className="bg-orange-500 hover:bg-orange-600">
+        <Button onClick={handleNext} className="bg-[#FFB222] hover:bg-[#FFB222]/90 text-white">
           Saqlash
         </Button>
       </div>

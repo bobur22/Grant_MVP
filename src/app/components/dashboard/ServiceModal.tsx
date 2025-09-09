@@ -59,14 +59,14 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-[#002B5C] border-none text-white p-0">
           <div className="relative">
             {/* Close button */}
-            <Button
+            {/* <Button
               variant="ghost"
               size="icon"
               className="absolute top-4 right-4 z-10 text-white hover:bg-white/10"
               onClick={onClose}
             >
               <X className="h-4 w-4" />
-            </Button>
+            </Button> */}
 
             <div className="p-6">
               {/* Header Section */}
@@ -77,7 +77,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                     <img
                       src={service.image || "/placeholder.svg"}
                       alt={service.title}
-                      className="w-full h-full object-contain"
+                      className="w-[76px] h-full object-cover"
                     />
                   </div>
                 </div>
@@ -101,7 +101,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                     <Button
                       variant="outline"
                       size="sm"
-                      className={`border-white/20 hover:bg-white/10 ${isFavorite ? "text-yellow-400" : "text-white"}`}
+                      className={`border-white/20 bg-white/20 hover:bg-white/10  ${isFavorite ? "text-yellow-400" : "text-white"}`}
                       onClick={() => setIsFavorite(!isFavorite)}
                     >
                       <Star className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />

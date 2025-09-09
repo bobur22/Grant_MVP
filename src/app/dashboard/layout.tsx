@@ -100,7 +100,7 @@ export default function DashboardLayout({
                 isSidebarCollapsed ? "px-2" : "px-4"
               } py-2 transition-all duration-300`}
             >
-              <Phone size={16} className="flex-shrink-0" />
+              <img src="/communicate-logo.svg" alt="" />
               {!isSidebarCollapsed && <span className="ml-2">Aloqa</span>}
             </Button>
             
