@@ -80,7 +80,7 @@ export default function DashboardPage() {
             <Avatar className="w-20 h-20">
               <AvatarImage src="/placeholder.svg?height=80&width=80" />
               <AvatarFallback className="bg-blue-600 text-white text-lg">
-                <img src="/person-avatar.png" alt="Xasanova go'zal" />
+                <img src="/person-avatar.jpg" alt="Xasanova go'zal" />
               </AvatarFallback>
             </Avatar>
             <div>

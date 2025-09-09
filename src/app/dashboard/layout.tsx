@@ -53,10 +53,10 @@ export default function DashboardLayout({
       <div className="min-h-screen bg-[#002B5C] flex">
         {/* Sidebar */}
         <div
-          className={`${isSidebarCollapsed ? "w-16" : "w-64"} bg-[#002B5C] border-r border-blue-800 transition-all duration-300 ease-in-out flex flex-col`}
+          className={`${isSidebarCollapsed ? "w-16" : "w-64"} bg-[#002B55] border-r border-gray-800 transition-all duration-300 ease-in-out flex flex-col`}
         >
           {/* Logo and Toggle */}
-          <div className="p-4 border-b border-blue-800">
+          <div className="px-4 py-6 border-b border-gray-800">
             <div className="flex items-center justify-between">
               <div
                 className={`bg-white rounded-lg ${isSidebarCollapsed ? "w-8 h-8" : "w-12 h-12"} transition-all duration-300`}
@@ -65,7 +65,7 @@ export default function DashboardLayout({
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                className="text-white hover:bg-blue-800 p-2"
+                className="text-white hover:bg-blue-800 p-2 mt-1"
               >
                 {isSidebarCollapsed ? <Menu size={20} /> : <X size={20} />}
               </Button>
@@ -73,7 +73,7 @@ export default function DashboardLayout({
           </div>
 
           {/* Navigation Menu */}
-          <nav className="flex-1 p-4 space-y-2">
+          <nav className="flex-1 p-4 pt-8 pr-1 space-y-2">
             {menuItems.map((item) => {
               const Icon = item.icon
               const isActive = pathname === item.href
@@ -94,7 +94,7 @@ export default function DashboardLayout({
           </nav>
 
           {/* Contact and Logout Buttons */}
-          <div className="p-4 border-t border-blue-800 space-y-2">
+          <div className="p-4 space-y-2">
             <Button
               className={`w-full bg-blue-600 hover:bg-blue-700 text-white ${
                 isSidebarCollapsed ? "px-2" : "px-4"
@@ -104,7 +104,7 @@ export default function DashboardLayout({
               {!isSidebarCollapsed && <span className="ml-2">Aloqa</span>}
             </Button>
             
-            <Button
+            {/* <Button
               onClick={handleLogout}
               className={`w-full bg-red-600 hover:bg-red-700 text-white ${
                 isSidebarCollapsed ? "px-2" : "px-4"
@@ -112,13 +112,13 @@ export default function DashboardLayout({
             >
               <LogOut size={16} className="flex-shrink-0" />
               {!isSidebarCollapsed && <span className="ml-2">Chiqish</span>}
-            </Button>
+            </Button> */}
           </div>
         </div>
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col">
-          <header className="bg-[#002B5C] border-b border-blue-800 px-6 py-4 flex items-center justify-between">
+          <header className="bg-[#061626]  px-6 py-4 flex items-center justify-between">
             {/* Left side - Greeting */}
             <div>
               <h1 className="text-white text-xl font-semibold">
@@ -143,7 +143,7 @@ export default function DashboardLayout({
             </div>
           </header>
 
-          <main className="flex-1 p-6 overflow-auto">{children}</main>
+          <main className="flex-1 p-6 overflow-auto bg-[#061626]">{children}</main>
         </div>
       </div>
     </ProtectedRoute>
