@@ -6,6 +6,8 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import { Menu, ChevronDown, Globe } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { AuthModal } from "../AuthModal/AuthModal"
+import {useAuth} from "@/context/AuthContext";
+import {useRouter} from "next/navigation";
 
 const navigationItems = [
   { name: "Asosiy", href: "/" },
@@ -17,6 +19,12 @@ const navigationItems = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const {user} = useAuth()
+  const router = useRouter()
+
+  const openLoginModal = () => {
+    ['', null, undefined].includes(user?.id) ? setIsAuthModalOpen(true) : router.push('/dashboard')
+  }
 
   return (
     <>
@@ -63,9 +71,9 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button 
+            <Button
               className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md font-medium"
-              onClick={() => setIsAuthModalOpen(true)}
+              onClick={() => openLoginModal()}
             >
               Kabinet
             </Button>

@@ -83,7 +83,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
       
       // Biroz kutib redirect qilamiz
       setTimeout(() => {
-        router.push('/dashboard')
+        window.location.href = '/dashboard'
         router.refresh() // Sahifani refresh qilamiz
       }, 100)
       

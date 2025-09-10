@@ -12,7 +12,7 @@ export default function FAQPage() {
          <div className="bg-[#1e40af] rounded-lg p-6 mb-6">
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-300">
-            <img src="/person-avatar.jpg" alt="User Avatar" className="w-full h-full object-cover" />
+            <img src={user?.profile_picture} alt="User Avatar" className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>

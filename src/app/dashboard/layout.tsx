@@ -120,7 +120,7 @@ export default function DashboardLayout({
                             <Avatar className="w-10 h-10">
                                 <AvatarImage src="/professional-woman-avatar.png" alt="User Avatar"/>
                                 <AvatarFallback className="bg-blue-600 text-white">
-                                    <img src="/person-avatar.jpg" alt="Xasanova Go'zal"/>
+                                    <img src={user?.profile_picture} alt="Xasanova Go'zal"/>
                                 </AvatarFallback>
                             </Avatar>
                         </div>

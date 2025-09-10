@@ -48,7 +48,7 @@ export default function ServicesPage() {
             <div className="bg-[#1e40af] rounded-lg p-6 mb-6">
                 <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-300">
-                        <img src="/person-avatar.jpg" alt="User Avatar" className="w-full h-full object-cover"/>
+                        <img src={user?.profile_picture} alt="User Avatar" className="w-full h-full object-cover"/>
                     </div>
                     <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
@@ -78,11 +78,11 @@ export default function ServicesPage() {
                             <div className="w-[76px] h-[126px] mb-4 flex items-center justify-center">
                                 <img
                                     src={service.image || "/placeholder.svg"}
-                                    alt={service.title}
+                                    alt={service?.title}
                                     className="w-full h-full object-cover"
                                 />
                             </div>
-                            <h3 className="text-gray-800 font-medium mb-4 text-sm leading-tight">{service.title}</h3>
+                            <h3 className="text-gray-800 font-medium mb-4 text-sm leading-tight">{service?.title}</h3>
                             <div className='flex w-full cursor-pointer'
                                  onClick={() => handleServiceClick(service)}>
                                 <span className='text-[#002B5C] w-full pl-4 flex items-center border rounded-tl-md rounded-bl-md'>Batafsil</span>

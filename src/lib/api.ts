@@ -116,6 +116,7 @@ export interface User {
   last_name?: string;
   is_active?: boolean;
   date_joined?: string;
+  profile_picture?: string
 }
 
 export interface LoginRequest {

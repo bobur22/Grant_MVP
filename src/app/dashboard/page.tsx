@@ -95,11 +95,6 @@ export interface Pagination {
     "page_size": number
 }
 
-interface IApplicationsResponse {
-    data: RewardResponse[]
-    pagination: Pagination
-}
-
 interface Status {
     label: string;
     color: string;
@@ -152,7 +147,7 @@ export default function DashboardPage() {
     }
 
     const getApplicationList = async () => {
-        const {data} = await api.get<IApplicationsResponse>('/applications/my-applications/')
+        const {data} = await api.get<RewardResponse[]>('/applications/my-applications/')
         setApplications(data)
     }
 
@@ -186,7 +181,7 @@ export default function DashboardPage() {
                         <Avatar className="w-20 h-20">
                             <AvatarImage src="/placeholder.svg?height=80&width=80"/>
                             <AvatarFallback className="bg-blue-600 text-white text-lg">
-                                <img src="/person-avatar.jpg" alt="Xasanova go'zal"/>
+                                <img src={user.profile_picture} alt="Xasanova go'zal"/>
                             </AvatarFallback>
                         </Avatar>
                         <div>
