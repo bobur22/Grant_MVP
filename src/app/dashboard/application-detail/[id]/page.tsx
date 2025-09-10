@@ -1,7 +1,7 @@
 "use client"
 
 import {ProtectedRoute} from "@/components/ProtectedRoute";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import api from "@/lib/api";
 import {useRouter} from "next/navigation";
 
@@ -54,10 +54,11 @@ interface IApplicationDetails {
 
 export default function ApplicationDetail({params}: Props) {
     const [detail, setDetail] = useState<IApplicationDetails>();
+    const { id } = React.use(params);
 
 
     const getApplicationDetails = async () => {
-        const {data} = await api.get<{ data: IApplicationDetails }>(`applications/applications/${params.id}/`);
+        const {data} = await api.get<{ data: IApplicationDetails }>(`applications/applications/${id}/`);
         setDetail(data.data)
     }
 
