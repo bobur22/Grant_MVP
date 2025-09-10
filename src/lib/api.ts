@@ -6,9 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 // Axios instance yaratish
 const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+
   timeout: 10000, // 10 soniya timeout
 });
 

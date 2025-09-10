@@ -2,8 +2,11 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {useAuth} from "@/context/AuthContext";
 
 export default function FAQPage() {
+  const {user} = useAuth()
+
   return (
     <div className="flex-1 p-6 bg-[#002B5C] min-h-screen">
          <div className="bg-[#1e40af] rounded-lg p-6 mb-6">
@@ -14,19 +17,19 @@ export default function FAQPage() {
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <h3 className="text-white font-semibold mb-1">F.I.SH.</h3>
-              <p className="text-blue-200 text-sm">Xasanova Go'zal O'ktam qizi</p>
+              <p className="text-blue-200 text-sm">{user?.first_name} {user?.last_name}</p>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-1">Telefon raqam</h3>
-              <p className="text-blue-200 text-sm">+998 (94) 855 02 03</p>
+              <p className="text-blue-200 text-sm">{user?.phone_number}</p>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-1">Pochta manzili</h3>
-              <p className="text-blue-200 text-sm">xasanovagozal3@gmail.com</p>
+              <p className="text-blue-200 text-sm">{user?.email}</p>
             </div>
           </div>
         </div>
-      </div>
+         </div>
 
       <div className="space-y-6">
         <h1 className="text-white text-2xl font-bold">Ko'p beriladigan savollar</h1>
@@ -35,7 +38,8 @@ export default function FAQPage() {
           <CardContent className="p-6">
             <Accordion type="single" collapsible defaultValue="item-1" className="space-y-4">
               <AccordionItem value="item-1" className="border-none">
-                <AccordionTrigger className="bg-gradient-to-r from-[#2563eb] to-[#2563eb] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white px-4 py-3 rounded-lg text-left font-medium transition-all duration-200 [&[data-state=open]>svg]:rotate-45 [&>svg]:text-white">
+                <AccordionTrigger
+                    className="bg-gradient-to-r from-[#2563eb] to-[#2563eb] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white px-4 py-3 rounded-lg text-left font-medium transition-all duration-200 [&[data-state=open]>svg]:rotate-45 [&>svg]:text-white">
                   Ochiq vakansiyalarto'g'risida ma'lumotni qayerdan olish bo'ladi?
                 </AccordionTrigger>
                 <AccordionContent className="px-4 py-3 text-blue-200 leading-relaxed">

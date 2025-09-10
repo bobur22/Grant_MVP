@@ -15,6 +15,7 @@ interface IApplicationDetails {
     holati: string;
     holati_code: string;
     manba: string;
+    xizmat_rasmi: string;
 
     shaxsiy_malumotlar: {
         ism: string;
@@ -52,14 +53,20 @@ interface IApplicationDetails {
 }
 
 
+
+
 export default function ApplicationDetail({params}: Props) {
     const [detail, setDetail] = useState<IApplicationDetails>();
-    const { id } = React.use(params);
+    const {id} = React.use(params);
 
 
     const getApplicationDetails = async () => {
         const {data} = await api.get<{ data: IApplicationDetails }>(`applications/applications/${id}/`);
         setDetail(data.data)
+    }
+
+     const generateImage = (url: string | undefined): string => {
+        return `https://grand-production.up.railway.app${url}`
     }
 
 
@@ -74,11 +81,11 @@ export default function ApplicationDetail({params}: Props) {
                 <div className='flex items-center justify-between mb-8'>
                     <div className='flex items-center gap-6'>
                         <div className='w-[100px] h-[100px] bg-white rounded-full overflow-hidden'>
-                            <img src="/zulfiya-medal.png" alt="zulfiya" className='w-full h-full object-cover'/>
+                            <img src={generateImage(detail?.xizmat_rasmi)} alt="zulfiya" className='w-full h-full object-cover'/>
                         </div>
-                        <p className='text-[18px] text-white font-medium'>“Zulfiya” davlat mukofoti</p>
+                        <p className='text-[18px] text-white font-medium'>{detail?.xizmat_nomi}</p>
                     </div>
-                    <span className='text-[18px] text-white font-medium'>02.03.2025</span>
+                    <span className='text-[18px] text-white font-medium'>{detail?.vaqtlar.yuborilgan}</span>
                 </div>
                 <div className="grid grid-cols-12 gap-y-12 px-8">
                     <div className="col-span-6 text-[20px] text-white">F.I.SH</div>
@@ -112,14 +119,21 @@ export default function ApplicationDetail({params}: Props) {
                         )
                     }
 
-                    <div className="col-span-6 text-[20px] text-white">Sertifikatlar</div>
-                    <div className="col-span-6 text-[20px] text-white flex flex-col gap-2">
-                        {detail?.hujjatlar.sertifikatlar.map(item => {
-                            return (
-                                <a href={item.fayl_url} key={item.id}>{item.fayl_nomi}</a>
-                            );
-                        })}
-                    </div>
+                    {
+                        detail?.hujjatlar.sertifikatlar.length > 0 && (
+                            <>
+                                <div className="col-span-6 text-[20px] text-white">Sertifikatlar</div>
+                                <div className="col-span-6 text-[20px] text-white flex flex-col gap-2">
+                                    {detail?.hujjatlar.sertifikatlar.map(item => {
+                                        return (
+                                            <a href={item.fayl_url} key={item.id}>{item.fayl_nomi}</a>
+                                        );
+                                    })}
+                                </div>
+                            </>
+                        )
+                    }
+
 
                     {/*<div className="col-span-6 text-[20px] text-white">Foto</div>*/}
                     {/*<div className="col-span-6 text-[20px] text-white">{detail?.hujjatlar.sertifikatlar.fayl_nomi}</div>*/}

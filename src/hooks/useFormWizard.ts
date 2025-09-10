@@ -17,6 +17,7 @@ export function useFormWizard(serviceId: number, serviceTitle: string) {
     awardDirection: {
       activityField: "",
       activityDescription: "",
+      source: ""
     },
     achievementConfirmation: {
       recommendationLetter: null,
@@ -74,6 +75,7 @@ export function useFormWizard(serviceId: number, serviceTitle: string) {
       awardDirection: {
         activityField: "",
         activityDescription: "",
+        source: ''
       },
       achievementConfirmation: {
         recommendationLetter: null,

@@ -1,7 +1,10 @@
+'use client'
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FileText, Shield, BookOpen, Brain, User, MessageSquare, BarChart3, Wallet, Globe } from "lucide-react"
 import Image from "next/image"
+import {useAuth} from "@/context/AuthContext";
 
 const legalDocuments = [
   {
@@ -72,6 +75,8 @@ const legalDocumentsRight = [
 ]
 
 export default function LegalPage() {
+  const { user } = useAuth()
+
   return (
     <div className="flex-1 p-6 bg-[#002B5C] min-h-screen">
       {/* User Profile Header */}
@@ -83,15 +88,15 @@ export default function LegalPage() {
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <h3 className="text-white font-semibold mb-1">F.I.SH.</h3>
-              <p className="text-blue-200 text-sm">Xasanova Go'zal O'ktam qizi</p>
+              <p className="text-blue-200 text-sm">{user?.first_name} {user?.last_name}</p>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-1">Telefon raqam</h3>
-              <p className="text-blue-200 text-sm">+998 (94) 855 02 03</p>
+              <p className="text-blue-200 text-sm">{user?.phone_number}</p>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-1">Pochta manzili</h3>
-              <p className="text-blue-200 text-sm">xasanovagozal3@gmail.com</p>
+              <p className="text-blue-200 text-sm">{user?.email}</p>
             </div>
           </div>
         </div>

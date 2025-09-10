@@ -10,6 +10,7 @@ import PersonalInfoStep from "./PersonalInfoStep"
 import AwardDirectionStep from "./AwardDirectionStep"
 import AchievementConfirmationStep from "./AchievementConfirmationStep"
 import InformationConfirmationStep from "./InformationConfirmationStep"
+import api from "@/lib/api";
 
 interface ApplicationWizardProps {
   isOpen: boolean
@@ -20,6 +21,34 @@ interface ApplicationWizardProps {
     image: string
   } | null
 }
+
+interface PersonalInfo {
+  fullName: string;
+  jshshir: string;
+  region: string;
+  district: string;
+  neighborhood: string;
+  phoneNumber: string;
+}
+
+interface AwardDirection {
+  activityField: string;
+  activityDescription: string;
+}
+
+interface AchievementConfirmation {
+  recommendationLetter: Record<string, unknown>; // empty object for now
+  certificates: Record<string, unknown>[];
+}
+
+interface ServiceApplication {
+  personalInfo: PersonalInfo;
+  awardDirection: AwardDirection;
+  achievementConfirmation: AchievementConfirmation;
+  serviceId: number;
+  serviceTitle: string;
+}
+
 
 export default function ApplicationWizard({ isOpen, onClose, service }: ApplicationWizardProps) {
   const {
@@ -35,6 +64,7 @@ export default function ApplicationWizard({ isOpen, onClose, service }: Applicat
   } = useFormWizard(service?.id || 0, service?.title || "")
 
   useEffect(() => {
+    console.log(service)
     if (!isOpen) {
       resetForm()
     }
@@ -46,10 +76,31 @@ export default function ApplicationWizard({ isOpen, onClose, service }: Applicat
   }
 
   const handleSubmit = () => {
-    console.log("Application submitted:", applicationData)
-    // Here you would typically send the data to your backend
-    alert("Ariza muvaffaqiyatli yuborildi!")
-    handleClose()
+    const formValue = applicationData
+    const formData = new FormData()
+
+    formData.append('reward', String(formValue.serviceId))
+    formData.append('source', String(formValue.awardDirection.source))
+    formData.append('area', formValue.personalInfo.region)
+    formData.append('district', formValue.personalInfo.district)
+    formData.append('neighborhood', formValue.personalInfo.neighborhood)
+    formData.append('activity', formValue.awardDirection.activityField)
+    formData.append('activity_description', formValue.awardDirection.activityDescription)
+
+    if (formValue.achievementConfirmation.recommendationLetter instanceof File) {
+      formData.append('recommendation_letter', formValue.achievementConfirmation.recommendationLetter)
+    }
+
+    for (const file of formValue.achievementConfirmation.certificates) {
+      if (file instanceof File) {
+        formData.append('certificates', file)
+      }
+    }
+    api.post('applications/applications/create/', formData)
+        .then(() => handleClose())
+        .catch(() => {
+          alert('Ushbu xizmatga ariza allaqachon topshirilgansiz.')
+        })
   }
 
   const renderCurrentStep = () => {

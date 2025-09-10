@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Download, Upload, X } from "lucide-react"
 import type { AchievementConfirmation } from "@/types/application.types"
+import {useAuth} from "@/context/AuthContext";
 
 interface AchievementConfirmationStepProps {
   data: AchievementConfirmation
@@ -23,6 +24,9 @@ export default function AchievementConfirmationStep({
   onPrev,
   onCancel,
 }: AchievementConfirmationStepProps) {
+
+  const {user} = useAuth()
+
   const [errors, setErrors] = useState<Record<string, string>>({})
   const recommendationRef = useRef<HTMLInputElement>(null)
   const certificatesRef = useRef<HTMLInputElement>(null)
@@ -103,7 +107,7 @@ export default function AchievementConfirmationStep({
             ) : (
               <div className="text-center">
                 <Upload className="w-8 h-8 text-blue-300 mx-auto mb-2" />
-                <p className="text-blue-300 text-sm mb-2">Xasanova Go'zal O'ktam qizi</p>
+                <p className="text-blue-300 text-sm mb-2"> {user?.first_name} {user?.last_name}</p>
                 <Button
                   variant="outline"
                   onClick={() => recommendationRef.current?.click()}
