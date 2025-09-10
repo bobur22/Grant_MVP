@@ -16,7 +16,7 @@ const menuItems = [
     {href: "/dashboard/services", label: "Xizmatlar & Ariza berish", icon: Grid3X3},
     {href: "/dashboard/legal", label: "Huquqiy Savollar", icon: Scale},
     {href: "/dashboard/faq", label: "FAQ", icon: HelpCircle},
-    {href: "/dashboard/guides", label: "Yo'riqnomalar", icon: BookOpen},
+    {href: "/dashboard/guides", label: "Yo&apos;riqnomalar", icon: BookOpen},
     {href: "/dashboard/history", label: "Amaliyotlar tarixi", icon: History},
 ]
 
@@ -120,7 +120,7 @@ export default function DashboardLayout({
                             <Avatar className="w-10 h-10">
                                 <AvatarImage src="/professional-woman-avatar.png" alt="User Avatar"/>
                                 <AvatarFallback className="bg-blue-600 text-white">
-                                    <img src={user?.profile_picture} alt="Xasanova Go'zal"/>
+                                    <img src={user?.profile_picture} alt="Xasanova Go&apos;zal"/>
                                 </AvatarFallback>
                             </Avatar>
                         </div>

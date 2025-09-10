@@ -8,17 +8,17 @@ const faqData = [
     id: 1,
     question: "Qanday boshlayaman?",
     answer:
-      "Platformaga ro'yxatdan o'tish uchun 'Kabinet' tugmasini bosing va kerakli ma'lumotlarni kiriting. Jarayon juda oddiy va tez amalga oshiriladi.",
+      "Platformaga ro&apos;yxatdan o&apos;tish uchun 'Kabinet' tugmasini bosing va kerakli ma'lumotlarni kiriting. Jarayon juda oddiy va tez amalga oshiriladi.",
   },
   {
     id: 2,
     question: "Kimlar ariza topshirishi mumkin?",
     answer:
-      "O'zbekiston Respublikasi fuqarolari, xorijiy fuqarolar va yuridik shaxslar belgilangan tartibda ariza topshirishi mumkin.",
+      "o&apos;zbekiston Respublikasi fuqarolari, xorijiy fuqarolar va yuridik shaxslar belgilangan tartibda ariza topshirishi mumkin.",
   },
   {
     id: 3,
-    question: "Qaysi hujjatlar kerak bo'ladi?",
+    question: "Qaysi hujjatlar kerak bo&apos;ladi?",
     answer:
       "Ariza topshirish uchun pasport, ma'lumotnoma, ish faoliyati haqida ma'lumotlar va boshqa tegishli hujjatlar talab qilinadi.",
   },
@@ -26,7 +26,7 @@ const faqData = [
     id: 4,
     question: "Fayl formatlari va hajm cheklovlari bormi?",
     answer:
-      "Qabul qilinadigan formatlar: PDF, JPG/PNG, DOCX (bozgan ZIP) qo'llab-quvvatlanadi. Ruxsat etilgan format va hajm yuklash qoidalari aniq ko'rsatiladi.",
+      "Qabul qilinadigan formatlar: PDF, JPG/PNG, DOCX (bozgan ZIP) qo&apos;llab-quvvatlanadi. Ruxsat etilgan format va hajm yuklash qoidalari aniq ko&apos;rsatiladi.",
   },
   {
     id: 5,
@@ -48,9 +48,9 @@ export function FaqSection() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-4">Ko'p beriladigan savollar</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-4">Ko&apos;p beriladigan savollar</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Biz sizning har bir qadamingizda yo'ldosh bo'lishga tayyormiz.
+            Biz sizning har bir qadamingizda yo&apos;ldosh bo&apos;lishga tayyormiz.
           </p>
         </div>
 

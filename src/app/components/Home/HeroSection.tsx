@@ -35,7 +35,7 @@ export function HeroSection() {
 
             <p className="text-lg lg:text-xl text-blue-100 leading-relaxed max-w-2xl">
               Sizning fidoyiligingiz, bilim va iste'dodingiz davlat miqyosida qadrlanishga loyiq. Endi mukofotga nomzod
-              bo'lish yanada qulay, tezkor va shaffof jarayonga aylandi.
+              bo&apos;lish yanada qulay, tezkor va shaffof jarayonga aylandi.
             </p>
 
             <div className="pt-4">

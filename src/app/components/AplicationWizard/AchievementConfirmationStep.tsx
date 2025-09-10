@@ -76,142 +76,161 @@ export default function AchievementConfirmationStep({
   }
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-6">
-        {/* Recommendation Letter */}
-        <div className="space-y-2">
-          <Label className="text-white">Tavsiya xati</Label>
-          <div className="border-2 border-dashed border-blue-600 rounded-lg p-6 bg-blue-700/20">
-            {data.recommendationLetter ? (
-              <div className="flex items-center justify-between bg-blue-700/50 rounded p-3">
-                <span className="text-white text-sm">{data.recommendationLetter.name}</span>
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => downloadFile(data.recommendationLetter!)}
-                    className="text-white hover:bg-blue-600"
-                  >
-                    <Download className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => onUpdate({ recommendationLetter: null })}
-                    className="!text-white hover:bg-red-600"
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="text-center">
-                <Upload className="w-8 h-8 text-blue-300 mx-auto mb-2" />
-                <p className="text-blue-300 text-sm mb-2"> {user?.first_name} {user?.last_name}</p>
-                <Button
-                  variant="outline"
-                  onClick={() => recommendationRef.current?.click()}
-                  className="!border-blue-600 text-white bg-blue-600 "
-                >
-                  Fayl tanlash
-                </Button>
-              </div>
-            )}
-            <input
-              ref={recommendationRef}
-              type="file"
-              accept=".pdf,.doc,.docx"
-              onChange={handleRecommendationUpload}
-              className="hidden"
-            />
-          </div>
-          {errors.recommendationLetter && <p className="text-red-400 text-sm">{errors.recommendationLetter}</p>}
-        </div>
+		<div className='space-y-6'>
+			<div className='space-y-6'>
+				{/* Recommendation Letter */}
+				<div className='space-y-2'>
+					<Label className='text-white'>Tavsiya xati</Label>
+					<div className='border-2 border-dashed border-blue-600 rounded-lg p-6 bg-blue-700/20'>
+						{data.recommendationLetter ? (
+							<div className='flex items-center justify-between bg-blue-700/50 rounded p-3'>
+								<span className='text-white text-sm'>
+									{data.recommendationLetter.name}
+								</span>
+								<div className='flex gap-2'>
+									<Button
+										size='sm'
+										variant='ghost'
+										onClick={() => downloadFile(data.recommendationLetter!)}
+										className='text-white hover:bg-blue-600'
+									>
+										<Download className='w-4 h-4' />
+									</Button>
+									<Button
+										size='sm'
+										variant='ghost'
+										onClick={() => onUpdate({ recommendationLetter: null })}
+										className='!text-white hover:bg-red-600'
+									>
+										<X className='w-4 h-4' />
+									</Button>
+								</div>
+							</div>
+						) : (
+							<div className='text-center'>
+								<Upload className='w-8 h-8 text-blue-300 mx-auto mb-2' />
+								<p className='text-blue-300 text-sm mb-2'>
+									{' '}
+									{user?.first_name} {user?.last_name}
+								</p>
+								<Button
+									variant='outline'
+									onClick={() => recommendationRef.current?.click()}
+									className='!border-blue-600 text-white bg-blue-600 '
+								>
+									Fayl tanlash
+								</Button>
+							</div>
+						)}
+						<input
+							ref={recommendationRef}
+							type='file'
+							accept='.pdf,.doc,.docx'
+							onChange={handleRecommendationUpload}
+							className='hidden'
+						/>
+					</div>
+					{errors.recommendationLetter && (
+						<p className='text-red-400 text-sm'>
+							{errors.recommendationLetter}
+						</p>
+					)}
+				</div>
 
-        {/* Certificates */}
-        <div className="space-y-2">
-          <Label className="text-white">Sertifikatlar</Label>
-          <div className="border-2 border-dashed border-blue-600 rounded-lg p-6 bg-blue-700/20">
-            {data.certificates.length > 0 ? (
-              <div className="space-y-2">
-                {data.certificates.map((file, index) => (
-                  <div key={index} className="flex items-center justify-between bg-blue-700/50 rounded p-3">
-                    <span className="text-white text-sm">{file.name}</span>
-                    <div className="flex gap-2">
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => downloadFile(file)}
-                        className="text-white hover:bg-blue-600"
-                      >
-                        <Download className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => removeCertificate(index)}
-                        className="text-white hover:bg-red-600"
-                      >
-                        <X className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-                <Button
-                  variant="outline"
-                  onClick={() => certificatesRef.current?.click()}
-                  className="!border-blue-600 text-white bg-blue-600 w-full"
-                >
-                  Yana fayl qo'shish
-                </Button>
-              </div>
-            ) : (
-              <div className="text-center">
-                <Upload className="w-8 h-8 text-blue-300 mx-auto mb-2" />
-                <p className="text-blue-300 text-sm mb-2">Sertifikatlarni yuklash</p>
-                <Button
-                  variant="outline"
-                  onClick={() => certificatesRef.current?.click()}
-                  className="!border-blue-600 text-white bg-blue-600 "
-                >
-                  Fayl tanlash
-                </Button>
-              </div>
-            )}
-            <input
-              ref={certificatesRef}
-              type="file"
-              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-              multiple
-              onChange={handleCertificatesUpload}
-              className="hidden"
-            />
-          </div>
-          {errors.certificates && <p className="text-red-400 text-sm">{errors.certificates}</p>}
-        </div>
-      </div>
+				{/* Certificates */}
+				<div className='space-y-2'>
+					<Label className='text-white'>Sertifikatlar</Label>
+					<div className='border-2 border-dashed border-blue-600 rounded-lg p-6 bg-blue-700/20'>
+						{data.certificates.length > 0 ? (
+							<div className='space-y-2'>
+								{data.certificates.map((file, index) => (
+									<div
+										key={index}
+										className='flex items-center justify-between bg-blue-700/50 rounded p-3'
+									>
+										<span className='text-white text-sm'>{file.name}</span>
+										<div className='flex gap-2'>
+											<Button
+												size='sm'
+												variant='ghost'
+												onClick={() => downloadFile(file)}
+												className='text-white hover:bg-blue-600'
+											>
+												<Download className='w-4 h-4' />
+											</Button>
+											<Button
+												size='sm'
+												variant='ghost'
+												onClick={() => removeCertificate(index)}
+												className='text-white hover:bg-red-600'
+											>
+												<X className='w-4 h-4' />
+											</Button>
+										</div>
+									</div>
+								))}
+								<Button
+									variant='outline'
+									onClick={() => certificatesRef.current?.click()}
+									className='!border-blue-600 text-white bg-blue-600 w-full'
+								>
+									Yana fayl qo&apos;shish
+								</Button>
+							</div>
+						) : (
+							<div className='text-center'>
+								<Upload className='w-8 h-8 text-blue-300 mx-auto mb-2' />
+								<p className='text-blue-300 text-sm mb-2'>
+									Sertifikatlarni yuklash
+								</p>
+								<Button
+									variant='outline'
+									onClick={() => certificatesRef.current?.click()}
+									className='!border-blue-600 text-white bg-blue-600 '
+								>
+									Fayl tanlash
+								</Button>
+							</div>
+						)}
+						<input
+							ref={certificatesRef}
+							type='file'
+							accept='.pdf,.doc,.docx,.jpg,.jpeg,.png'
+							multiple
+							onChange={handleCertificatesUpload}
+							className='hidden'
+						/>
+					</div>
+					{errors.certificates && (
+						<p className='text-red-400 text-sm'>{errors.certificates}</p>
+					)}
+				</div>
+			</div>
 
-      <div className="flex justify-between pt-6">
-        <Button
-          variant="outline"
-          onClick={onPrev}
-          className="border-white/20 text-white hover:bg-white/10 bg-transparent"
-        >
-          Orqaga qaytish
-        </Button>
-        <div className="flex gap-4">
-          <Button
-            variant="outline"
-            onClick={onCancel}
-            className="border-white/20 text-white hover:bg-white/10 bg-transparent"
-          >
-            Bekor qilish
-          </Button>
-          <Button onClick={handleNext} className="bg-[#FFB222] hover:bg-[#FFB222]/90 text-white">
-            Saqlash
-          </Button>
-        </div>
-      </div>
-    </div>
-  )
+			<div className='flex justify-between pt-6'>
+				<Button
+					variant='outline'
+					onClick={onPrev}
+					className='border-white/20 text-white hover:bg-white/10 bg-transparent'
+				>
+					Orqaga qaytish
+				</Button>
+				<div className='flex gap-4'>
+					<Button
+						variant='outline'
+						onClick={onCancel}
+						className='border-white/20 text-white hover:bg-white/10 bg-transparent'
+					>
+						Bekor qilish
+					</Button>
+					<Button
+						onClick={handleNext}
+						className='bg-[#FFB222] hover:bg-[#FFB222]/90 text-white'
+					>
+						Saqlash
+					</Button>
+				</div>
+			</div>
+		</div>
+	)
 }

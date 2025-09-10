@@ -30,18 +30,18 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
     price: "Bepul",
     documents: [
       "Pasport nusxasi",
-      "Ariza (belgilangan shakl bo'yicha)",
+      "Ariza (belgilangan shakl bo&apos;yicha)",
       "Yutuqlarni tasdiqlovchi hujjatlar",
       "Tavsiyanoma (ish joyidan yoki ta'lim muassasasidan)",
     ],
     howItWorks: [
-      "Onlayn ariza to'ldiring",
+      "Onlayn ariza to&apos;ldiring",
       "Kerakli hujjatlarni yuklang",
-      "Ekspertlar tomonidan ko'rib chiqiladi",
+      "Ekspertlar tomonidan ko&apos;rib chiqiladi",
       "Natija haqida xabar beriladi",
     ],
-    legalBasis: "O'zbekiston Respublikasi Prezidentining 2019-yil 6-fevraldagi PF-5649-son Farmoni",
-    organization: "O'zbekiston Respublikasi Prezidenti Administratsiyasi",
+    legalBasis: "o&apos;zbekiston Respublikasi Prezidentining 2019-yil 6-fevraldagi PF-5649-son Farmoni",
+    organization: "o&apos;zbekiston Respublikasi Prezidenti Administratsiyasi",
     contact: {
       phone: "+998 71 239 15 25",
       email: "info@president.uz",
@@ -105,7 +105,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                       onClick={() => setIsFavorite(!isFavorite)}
                     >
                       <Star className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
-                      Tanlanganiga qo'shish
+                      Tanlanganiga qo&apos;shish
                     </Button>
                     <Button className="bg-orange-500 hover:bg-orange-600 text-white" onClick={handleUseService}>
                       Xizmatlardan foydalanish
@@ -209,7 +209,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                           <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
                             <span className="text-xs">⚖️</span>
                           </div>
-                          Xizmat ko'rsatishning huquqiy asosi
+                          Xizmat ko&apos;rsatishning huquqiy asosi
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="text-blue-200 pl-11">{serviceDetails.legalBasis}</AccordionContent>

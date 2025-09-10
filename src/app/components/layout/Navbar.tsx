@@ -13,7 +13,7 @@ const navigationItems = [
   { name: "Asosiy", href: "/" },
   { name: "Biz haqimizda", href: "/about" },
   { name: "Mukofotlar", href: "/awards" },
-  { name: "Yo'riqnomalar", href: "/guidelines" },
+  { name: "Yo&apos;riqnomalar", href: "/guidelines" },
 ]
 
 export function Navbar() {
@@ -60,12 +60,12 @@ export function Navbar() {
                   className="text-white hover:text-orange-400 hover:bg-[#2a4a6b] flex items-center space-x-2"
                 >
                   <Globe className="h-4 w-4" />
-                  <span>O'zbek</span>
+                  <span>o&apos;zbek</span>
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-white">
-                <DropdownMenuItem>O'zbek</DropdownMenuItem>
+                <DropdownMenuItem>o&apos;zbek</DropdownMenuItem>
                 <DropdownMenuItem>Русский</DropdownMenuItem>
                 <DropdownMenuItem>English</DropdownMenuItem>
               </DropdownMenuContent>
@@ -109,12 +109,12 @@ export function Navbar() {
                           className="text-white hover:text-orange-400 hover:bg-[#2a4a6b] flex items-center space-x-2 w-full justify-start"
                         >
                           <Globe className="h-4 w-4" />
-                          <span>O'zbek</span>
+                          <span>o&apos;zbek</span>
                           <ChevronDown className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="start" className="bg-white">
-                        <DropdownMenuItem>O'zbek</DropdownMenuItem>
+                        <DropdownMenuItem>o&apos;zbek</DropdownMenuItem>
                         <DropdownMenuItem>Русский</DropdownMenuItem>
                         <DropdownMenuItem>English</DropdownMenuItem>
                       </DropdownMenuContent>

@@ -24,7 +24,7 @@ import {useRouter} from "next/navigation";
 //     },
 //     {
 //         id: "3456789875",
-//         service: "\"Mard o'g'lon\" davlat mukofoti",
+//         service: "\"Mard o&apos;g'lon\" davlat mukofoti",
 //         date: "26.06.2025",
 //         status: "Jarayonda",
 //         statusColor: "bg-orange-500",
@@ -181,7 +181,7 @@ export default function DashboardPage() {
                         <Avatar className="w-20 h-20">
                             <AvatarImage src="/placeholder.svg?height=80&width=80"/>
                             <AvatarFallback className="bg-blue-600 text-white text-lg">
-                                <img src={user.profile_picture} alt="Xasanova go'zal"/>
+                                <img src={user.profile_picture} alt="Xasanova go&apos;zal"/>
                             </AvatarFallback>
                         </Avatar>
                         <div>

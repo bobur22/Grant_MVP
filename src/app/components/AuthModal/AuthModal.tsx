@@ -51,13 +51,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     if (!phoneNumber.trim()) {
       errors.phone = "Telefon raqam talab qilinadi"
     } else if (!/^\+?998[0-9]{9}$/.test(phoneNumber.replace(/\s/g, ''))) {
-      errors.phone = "To'g'ri telefon raqam formatini kiriting"
+      errors.phone = "To&apos;g'ri telefon raqam formatini kiriting"
     }
 
     if (!password.trim()) {
       errors.password = "Parol talab qilinadi"
     } else if (password.length < 4) {
-      errors.password = "Parol kamida 4 ta belgidan iborat bo'lishi kerak"
+      errors.password = "Parol kamida 4 ta belgidan iborat bo&apos;lishi kerak"
     }
 
     setFormErrors(errors)
@@ -77,7 +77,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         password: password,
       })
 
-      // Login muvaffaqiyatli bo'lgandan keyin
+      // Login muvaffaqiyatli bo&apos;lgandan keyin
       console.log('Login successful, redirecting to dashboard...')
       onClose()
       
@@ -163,9 +163,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </Button>
 
               <div className="text-sm">
-                <span className="text-white">Sahifangiz yo'qmi? </span>
+                <span className="text-white">Sahifangiz yo&apos;qmi? </span>
                 <Link href="/register" onClick={onClose} className="text-blue-400 underline hover:text-blue-300 transition-colors">
-                  Ro'yxatdan O'tish
+                  Ro&apos;yxatdan o&apos;tish
                 </Link>
               </div>
             </div>
@@ -263,9 +263,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </Button>
 
                 <div className="text-sm">
-                  <span className="text-white">Avval Ro'yxatdan O'tganmisiz? </span>
+                  <span className="text-white">Avval Ro&apos;yxatdan o&apos;tganmisiz? </span>
                   <Link href="/register" onClick={onClose} className="text-orange-400 underline hover:text-orange-300 transition-colors">
-                    Ro'yxatdan O'tish
+                    Ro&apos;yxatdan o&apos;tish
                   </Link>
                 </div>
               </form>
@@ -344,13 +344,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 //     if (!phoneNumber.trim()) {
 //       errors.phone = "Telefon raqam talab qilinadi"
 //     } else if (!/^\+?998[0-9]{9}$/.test(phoneNumber.replace(/\s/g, ''))) {
-//       errors.phone = "To'g'ri telefon raqam formatini kiriting"
+//       errors.phone = "To&apos;g'ri telefon raqam formatini kiriting"
 //     }
 
 //     if (!password.trim()) {
 //       errors.password = "Parol talab qilinadi"
 //     } else if (password.length < 4) {
-//       errors.password = "Parol kamida 4 ta belgidan iborat bo'lishi kerak"
+//       errors.password = "Parol kamida 4 ta belgidan iborat bo&apos;lishi kerak"
 //     }
 
 //     setFormErrors(errors)
@@ -449,9 +449,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 //               </Button>
 
 //               <div className="text-sm">
-//                 <span className="text-white">Sahifangiz yo'qmi? </span>
+//                 <span className="text-white">Sahifangiz yo&apos;qmi? </span>
 //                 <Link href="/register" onClick={onClose} className="text-blue-400 underline hover:text-blue-300 transition-colors">
-//                   Ro'yxatdan O'tish
+//                   Ro&apos;yxatdan o&apos;tish
 //                 </Link>
 //               </div>
 //             </div>
@@ -549,9 +549,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 //                 </Button>
 
 //                 <div className="text-sm">
-//                   <span className="text-white">Avval Ro'yxatdan O'tganmisiz? </span>
+//                   <span className="text-white">Avval Ro&apos;yxatdan o&apos;tganmisiz? </span>
 //                   <Link href="/register" onClick={onClose} className="text-orange-400 underline hover:text-orange-300 transition-colors">
-//                     Ro'yxatdan O'tish
+//                     Ro&apos;yxatdan o&apos;tish
 //                   </Link>
 //                 </div>
 //               </form>

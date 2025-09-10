@@ -61,19 +61,19 @@ export default function RegisterPage() {
     if (!formData.firstName.trim()) {
       newErrors.firstName = "Ism majburiy"
     } else if (!nameRegex.test(formData.firstName)) {
-      newErrors.firstName = "Ism faqat harflardan iborat bo'lishi kerak"
+      newErrors.firstName = "Ism faqat harflardan iborat bo&apos;lishi kerak"
     }
 
     if (!formData.lastName.trim()) {
       newErrors.lastName = "Familiya majburiy"
     } else if (!nameRegex.test(formData.lastName)) {
-      newErrors.lastName = "Familiya faqat harflardan iborat bo'lishi kerak"
+      newErrors.lastName = "Familiya faqat harflardan iborat bo&apos;lishi kerak"
     }
 
     if (!formData.fatherName.trim()) {
       newErrors.fatherName = "Otasining ismi majburiy"
     } else if (!nameRegex.test(formData.fatherName)) {
-      newErrors.fatherName = "Otasining ismi faqat harflardan iborat bo'lishi kerak"
+      newErrors.fatherName = "Otasining ismi faqat harflardan iborat bo&apos;lishi kerak"
     }
 
     // Gender validation
@@ -88,7 +88,7 @@ export default function RegisterPage() {
       const selectedDate = new Date(formData.dateOfBirth)
       const today = new Date()
       if (selectedDate > today) {
-        newErrors.dateOfBirth = "Tug'ilgan sana kelajakda bo'lishi mumkin emas"
+        newErrors.dateOfBirth = "Tug'ilgan sana kelajakda bo&apos;lishi mumkin emas"
       }
     }
 
@@ -97,7 +97,7 @@ export default function RegisterPage() {
     if (!formData.phoneNumber.trim()) {
       newErrors.phoneNumber = "Telefon raqam majburiy"
     } else if (!phoneRegex.test(formData.phoneNumber)) {
-      newErrors.phoneNumber = "Telefon raqam +998XXXXXXXXX formatida bo'lishi kerak"
+      newErrors.phoneNumber = "Telefon raqam +998XXXXXXXXX formatida bo&apos;lishi kerak"
     }
 
     // Email validation
@@ -105,7 +105,7 @@ export default function RegisterPage() {
     if (!formData.email.trim()) {
       newErrors.email = "Email majburiy"
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Email formati noto'g'ri"
+      newErrors.email = "Email formati noto&apos;g'ri"
     }
 
     // Password validation
@@ -113,7 +113,7 @@ export default function RegisterPage() {
     if (!formData.password) {
       newErrors.password = "Parol majburiy"
     } else if (!passwordRegex.test(formData.password)) {
-      newErrors.password = "Parol kamida 8 ta belgi, katta va kichik harf, raqam bo'lishi kerak"
+      newErrors.password = "Parol kamida 8 ta belgi, katta va kichik harf, raqam bo&apos;lishi kerak"
     }
 
     // Confirm password validation
@@ -133,7 +133,7 @@ export default function RegisterPage() {
     if (!formData.passportSerial.trim()) {
       newErrors.passportSerial = "Pasport seriya raqami majburiy"
     } else if (!passportRegex.test(formData.passportSerial)) {
-      newErrors.passportSerial = "Pasport seriya raqami AA1234567 formatida bo'lishi kerak"
+      newErrors.passportSerial = "Pasport seriya raqami AA1234567 formatida bo&apos;lishi kerak"
     }
 
     // JSHSHIR validation
@@ -141,7 +141,7 @@ export default function RegisterPage() {
     if (!formData.jshshir.trim()) {
       newErrors.jshshir = "JSHSHIR majburiy"
     } else if (!jshshirRegex.test(formData.jshshir)) {
-      newErrors.jshshir = "JSHSHIR 14 ta raqamdan iborat bo'lishi kerak"
+      newErrors.jshshir = "JSHSHIR 14 ta raqamdan iborat bo&apos;lishi kerak"
     }
 
     // Photo validation
@@ -152,7 +152,7 @@ export default function RegisterPage() {
       const maxSize = 2 * 1024 * 1024 // 2MB
 
       if (!allowedTypes.includes(formData.photo.type)) {
-        newErrors.photo = "Foto faqat JPG yoki PNG formatida bo'lishi kerak"
+        newErrors.photo = "Foto faqat JPG yoki PNG formatida bo&apos;lishi kerak"
       } else if (formData.photo.size > maxSize) {
         newErrors.photo = "Foto hajmi 2MB dan oshmasligi kerak"
       }
@@ -189,7 +189,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-[#1e3a8a] flex items-center justify-center p-4">
       <div className="bg-[#1e3a8a] rounded-xl p-8 shadow-lg w-full max-w-md text-center border border-blue-800">
-        <h1 className="text-2xl font-bold text-white mb-8">Ro'yxatdan o'tish</h1>
+        <h1 className="text-2xl font-bold text-white mb-8">Ro&apos;yxatdan o&apos;tish</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* First Name */}
@@ -405,7 +405,7 @@ export default function RegisterPage() {
           </Button>
 
           <div className="text-sm mt-4">
-            <span className="text-white">Avval Ro'yxatdan O'tganmisiz? </span>
+            <span className="text-white">Avval Ro&apos;yxatdan o&apos;tganmisiz? </span>
             <Link href="/login" className="text-orange-400 underline hover:text-orange-300 transition-colors">
               Log In
             </Link>

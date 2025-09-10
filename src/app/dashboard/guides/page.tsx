@@ -24,13 +24,13 @@ const regions = [
 
 const tutorials = {
   Toshkent: {
-    title: "Toshkent viloyati uchun yo'riqnoma",
-    description: "Toshkent viloyatidagi foydalanuvchilar uchun maxsus ko'rsatmalar va qo'llanmalar.",
+    title: "Toshkent viloyati uchun yo&apos;riqnoma",
+    description: "Toshkent viloyatidagi foydalanuvchilar uchun maxsus ko&apos;rsatmalar va qo&apos;llanmalar.",
     thumbnail: "/office.jpg",
   },
   Buxor: {
-    title: "Buxor viloyati uchun yo'riqnoma",
-    description: "Buxor viloyatidagi jarayonlar va tizimdan foydalanish bo'yicha batafsil ma'lumotlar.",
+    title: "Buxor viloyati uchun yo&apos;riqnoma",
+    description: "Buxor viloyatidagi jarayonlar va tizimdan foydalanish bo&apos;yicha batafsil ma'lumotlar.",
     thumbnail: "/office.jpg",
   },
   // Add more tutorials for other regions as needed
@@ -63,7 +63,7 @@ export default function GuidesPage() {
           {/* Sidebar Header */}
           <div className="p-6 border-b border-blue-800">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-white">Yo'riqnomalar</h2>
+              <h2 className="text-xl font-semibold text-white">Yo&apos;riqnomalar</h2>
               <Button
                 variant="ghost"
                 size="sm"
@@ -126,7 +126,7 @@ export default function GuidesPage() {
             >
               <Menu className="w-5 h-5" />
             </Button>
-            <h1 className="text-lg font-semibold text-white">Yo'riqnomalar</h1>
+            <h1 className="text-lg font-semibold text-white">Yo&apos;riqnomalar</h1>
           </div>
         </div>
 
@@ -148,7 +148,7 @@ export default function GuidesPage() {
             {/* Video Description */}
             <div className="bg-blue-800/30 rounded-lg p-6">
               <p className="text-blue-100 leading-relaxed">
-                Yo'riqnoma – foydalanuvchilarga tizimdan foydalanishni tushunarii qilib ko'rsatadi. Video, matn va
+                Yo&apos;riqnoma – foydalanuvchilarga tizimdan foydalanishni tushunarii qilib ko&apos;rsatadi. Video, matn va
                 linklar orqali har bir bosqichni oson bajarish imkonini beradi.
               </p>
               <p className="text-blue-200 mt-4">{currentTutorial.description}</p>
@@ -159,7 +159,7 @@ export default function GuidesPage() {
               <div className="bg-blue-800/20 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-white mb-3">Asosiy xususiyatlar</h3>
                 <ul className="space-y-2 text-blue-200">
-                  <li>• Bosqichma-bosqich ko'rsatmalar</li>
+                  <li>• Bosqichma-bosqich ko&apos;rsatmalar</li>
                   <li>• Video va matnli tushuntirishlar</li>
                   <li>• Amaliy misollar</li>
                   <li>• Tez-tez beriladigan savollar</li>
@@ -167,12 +167,12 @@ export default function GuidesPage() {
               </div>
 
               <div className="bg-blue-800/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-white mb-3">Qo'shimcha resurslar</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">Qo&apos;shimcha resurslar</h3>
                 <ul className="space-y-2 text-blue-200">
                   <li>
                     •{" "}
                     <a href="#" className="text-blue-300 hover:text-blue-100 underline">
-                      PDF qo'llanma
+                      PDF qo&apos;llanma
                     </a>
                   </li>
                   <li>

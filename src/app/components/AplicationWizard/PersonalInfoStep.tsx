@@ -42,13 +42,13 @@ export default function PersonalInfoStep({data, onUpdate, onNext, onCancel}: Per
         if (!data.fullName.trim()) newErrors.fullName = "F.I.SH. kiritish majburiy"
         if (!data.jshshir.trim()) newErrors.jshshir = "JSHSHIR kiritish majburiy"
         if (data.jshshir && !/^\d{14}$/.test(data.jshshir))
-            newErrors.jshshir = "JSHSHIR 14 ta raqamdan iborat bo'lishi kerak"
+            newErrors.jshshir = "JSHSHIR 14 ta raqamdan iborat bo&apos;lishi kerak"
         if (!data.region) newErrors.region = "Hududni tanlash majburiy"
         if (!data.district) newErrors.district = "Tumanni tanlash majburiy"
         if (!data.neighborhood.trim()) newErrors.neighborhood = "Mahallani kiritish majburiy"
         if (!data.phoneNumber.trim()) newErrors.phoneNumber = "Telefon raqamini kiritish majburiy"
         // if (data.phoneNumber && !/^\+998$$\d{2}$$\s\d{3}\s\d{2}\s\d{2}$/.test(data.phoneNumber)) {
-        //   newErrors.phoneNumber = "Telefon raqami noto'g'ri formatda"
+        //   newErrors.phoneNumber = "Telefon raqami noto&apos;g'ri formatda"
         // }
 
         setErrors(newErrors)

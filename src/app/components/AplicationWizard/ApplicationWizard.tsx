@@ -180,7 +180,7 @@ export default function ApplicationWizard({ isOpen, onClose, service }: Applicat
                 <div>
                   <DialogTitle className="text-xl font-bold text-white mb-1">Ariza berish</DialogTitle>
                   <p className="text-blue-200 text-sm">
-                    Ushbu bo'lim yuborilgan barcha arizalaringizni tartibli ko'rinishda taqdim etiladi.
+                    Ushbu bo&apos;lim yuborilgan barcha arizalaringizni tartibli ko&apos;rinishda taqdim etiladi.
                   </p>
                   <p className="text-white font-medium mt-2">{service.title}</p>
                 </div>
@@ -191,7 +191,7 @@ export default function ApplicationWizard({ isOpen, onClose, service }: Applicat
             <ProgressIndicator
               steps={[
                 { id: 1, title: "Shaxsiy ma'lumotlar", isCompleted: currentStep > 1, isActive: currentStep === 1 },
-                { id: 2, title: "Mukofot yo'nalishi", isCompleted: currentStep > 2, isActive: currentStep === 2 },
+                { id: 2, title: "Mukofot yo&apos;nalishi", isCompleted: currentStep > 2, isActive: currentStep === 2 },
                 { id: 3, title: "Yutuqlarni tasdiqlash", isCompleted: currentStep > 3, isActive: currentStep === 3 },
                 { id: 4, title: "Ma'lumotlarni tasdiqlash", isCompleted: currentStep > 4, isActive: currentStep === 4 },
               ]}

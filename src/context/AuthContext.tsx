@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     const router = useRouter()
   
-    // isAuthenticated ni dinamik hisoblash o'rniga state sifatida qo'shamiz
+    // isAuthenticated ni dinamik hisoblash o&apos;rniga state sifatida qo&apos;shamiz
     const [isAuthenticated, setIsAuthenticated] = useState(false);
   
     // Sahifa yuklanganda foydalanuvchi ma'lumotlarini tekshirish
@@ -65,7 +65,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               console.log('User profile loaded:', userProfile);
             } catch (profileError) {
               console.error('Failed to load profile:', profileError);
-              // Profile olishda xatolik bo'lsa, tokendan foydalanib dummy user yaratamiz
+              // Profile olishda xatolik bo&apos;lsa, tokendan foydalanib dummy user yaratamiz
               const token = getAccessToken();
               if (token) {
                 setUser({
@@ -78,7 +78,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               }
             }
           } else {
-            // Token noto'g'ri bo'lsa tozalash
+            // Token noto&apos;g'ri bo&apos;lsa tozalash
             console.log('Token invalid, clearing...');
             await logoutUser().then(() => router.push('/'))
             setUser(null);
@@ -107,7 +107,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         const response: LoginResponse = await loginUser(credentials);
         console.log('Login response received:', response);
         
-        // User ma'lumotlarini o'rnatish
+        // User ma'lumotlarini o&apos;rnatish
         if (response.user) {
           setUser(response.user);
         } else {
@@ -120,7 +120,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           });
         }
         
-        // Authenticated holatini o'rnatish
+        // Authenticated holatini o&apos;rnatish
         setIsAuthenticated(true);
         console.log('Login successful, user authenticated');
         
@@ -134,7 +134,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         } else if (error.status === 422) {
           errorMessage = 'Ma\'lumotlar to\'g\'ri formatda kiritilmagan';
         } else if (error.status === 0) {
-          errorMessage = 'Internetga ulanishda muammo';
+          errorMessage = 'Internetga ulanishda muammo&apos;;
         } else if (error.message) {
           errorMessage = error.message;
         }
@@ -249,7 +249,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 //           setUser(userProfile);
 //         } catch (error) {
 //           console.error('Failed to get user profile:', error);
-//           // Token noto'g'ri bo'lsa tozalash
+//           // Token noto&apos;g'ri bo&apos;lsa tozalash
 //           await logout();
 //         }
 //       }
@@ -274,7 +274,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 //       } else if (error.response?.status === 400) {
 //         errorMessage = 'Ma\'lumotlar to\'liq kiritilmagan';
 //       } else if (error.code === 'NETWORK_ERROR') {
-//         errorMessage = 'Internetga ulanishda muammo';
+//         errorMessage = 'Internetga ulanishda muammo&apos;;
 //       }
       
 //       setError(errorMessage);

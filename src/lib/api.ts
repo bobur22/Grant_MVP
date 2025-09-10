@@ -11,7 +11,7 @@ const api: AxiosInstance = axios.create({
   timeout: 10000, // 10 soniya timeout
 });
 
-// Request interceptor - har bir requestga token qo'shadi
+// Request interceptor - har bir requestga token qo&apos;shadi
 api.interceptors.request.use(
   (config) => {
     const token = getAccessToken();
@@ -48,7 +48,7 @@ api.interceptors.response.use(
           return api(originalRequest);
         }
       } catch (refreshError) {
-        // Refresh token ham xato bo'lsa, foydalanuvchini login sahifasiga yo'naltirish
+        // Refresh token ham xato bo&apos;lsa, foydalanuvchini login sahifasiga yo&apos;naltirish
         clearTokens();
         if (typeof window !== 'undefined') {
           window.location.href = '/';
@@ -263,7 +263,7 @@ export default api;
 //   timeout: 10000, // 10 soniya timeout
 // });
 
-// // Request interceptor - har bir requestga token qo'shadi
+// // Request interceptor - har bir requestga token qo&apos;shadi
 // api.interceptors.request.use(
 //   (config) => {
 //     const token = getAccessToken();
@@ -300,7 +300,7 @@ export default api;
 //           return api(originalRequest);
 //         }
 //       } catch (refreshError) {
-//         // Refresh token ham xato bo'lsa, foydalanuvchini login sahifasiga yo'naltirish
+//         // Refresh token ham xato bo&apos;lsa, foydalanuvchini login sahifasiga yo&apos;naltirish
 //         clearTokens();
 //         if (typeof window !== 'undefined') {
 //           window.location.href = '/';
@@ -404,7 +404,7 @@ export default api;
 //       throw apiError;
 //     } else if (error.request) {
 //       throw {
-//         message: 'Internetga ulanishda muammo',
+//         message: 'Internetga ulanishda muammo&apos;,
 //         status: 0
 //       } as ApiError;
 //     } else {

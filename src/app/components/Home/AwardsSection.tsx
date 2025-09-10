@@ -12,9 +12,9 @@ export function AwardsSection() {
     },
     {
       id: 2,
-      name: "\"Mard o'g'lon\" davlat mukofoti",
+      name: "\"Mard o&apos;g'lon\" davlat mukofoti",
       description:
-        "Bu mukofot vatani himoyasida paxta va faoliyat ko'rsatgan yoshlarga beriladi. Mukofot har yili beriladi.",
+        "Bu mukofot vatani himoyasida paxta va faoliyat ko&apos;rsatgan yoshlarga beriladi. Mukofot har yili beriladi.",
       image: "/mard-uglon-medal.png",
     },
     {
@@ -40,7 +40,7 @@ export function AwardsSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6">Mukofotlar turlari</h2>
           <p className="text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Davlat mukofotlari — bu nafaqat shaxsiy yutuqlarning e'tirofi, balki butun jamiyat oldida hurmat va
-            obro'ning ifodasidir. Platformamiz orqali quyidagi yuqori mukofotlarga ariza topshirish imkoniyati mavjud:
+            obro&apos;ning ifodasidir. Platformamiz orqali quyidagi yuqori mukofotlarga ariza topshirish imkoniyati mavjud:
           </p>
         </div>
 

@@ -14,7 +14,7 @@ export default function HistoryPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <p className="text-blue-200">Bu sahifada amalga oshirilgan amaliyotlar tarixi ko'rsatiladi.</p>
+          <p className="text-blue-200">Bu sahifada amalga oshirilgan amaliyotlar tarixi ko&apos;rsatiladi.</p>
         </CardContent>
       </Card>
     </div>
