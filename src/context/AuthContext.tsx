@@ -134,7 +134,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         } else if (error.status === 422) {
           errorMessage = 'Ma\'lumotlar to\'g\'ri formatda kiritilmagan';
         } else if (error.status === 0) {
-          errorMessage = 'Internetga ulanishda muammo&apos;;
+          errorMessage = 'Internetga ulanishda muammo'
         } else if (error.message) {
           errorMessage = error.message;
         }
