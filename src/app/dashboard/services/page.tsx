@@ -7,6 +7,7 @@ import {ArrowRight} from "lucide-react"
 import ServiceModal from "@/app/components/dashboard/ServiceModal"
 import {useAuth} from "@/context/AuthContext";
 import api from "@/lib/api";
+import Image from "next/image";
 
 interface Rewards {
     id: number;
@@ -15,6 +16,7 @@ interface Rewards {
     image: string;
     applications_count: number;
     created_at: string; // or Date if you want to parse it
+    title: string;
 }
 
 export default function ServicesPage() {
@@ -48,7 +50,8 @@ export default function ServicesPage() {
             <div className="bg-[#1e40af] rounded-lg p-6 mb-6">
                 <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-300">
-                        <img src={user?.profile_picture} alt="User Avatar" className="w-full h-full object-cover"/>
+                        <Image src={user?.profile_picture || ''} alt="User Avatar"
+                               className="w-full h-full object-cover"/>
                     </div>
                     <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
@@ -76,18 +79,19 @@ export default function ServicesPage() {
                     <Card key={service.id} className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                         <CardContent className="p-6 flex flex-col items-center text-center">
                             <div className="w-[76px] h-[126px] mb-4 flex items-center justify-center">
-                                <img
+                                <Image
                                     src={service.image || "/placeholder.svg"}
-                                    alt={service?.title}
+                                    alt={service.image || ''}
                                     className="w-full h-full object-cover"
                                 />
                             </div>
                             <h3 className="text-gray-800 font-medium mb-4 text-sm leading-tight">{service?.title}</h3>
                             <div className='flex w-full cursor-pointer'
                                  onClick={() => handleServiceClick(service)}>
-                                <span className='text-[#002B5C] w-full pl-4 flex items-center border rounded-tl-md rounded-bl-md'>Batafsil</span>
+                                <span
+                                    className='text-[#002B5C] w-full pl-4 flex items-center border rounded-tl-md rounded-bl-md'>Batafsil</span>
                                 <Button
-                                    className="bg-[#002B5C] hover:bg-[#001a3d] text-white w-full mt-auto rounded-tl-none rounded-bl-none w-24"
+                                    className="bg-[#002B5C] hover:bg-[#001a3d] text-white  mt-auto rounded-tl-none rounded-bl-none w-24"
                                     size="sm"
                                 >
                                     <ArrowRight className="w-4 h-4 ml-2"/>

@@ -3,7 +3,11 @@
 import {ProtectedRoute} from "@/components/ProtectedRoute";
 import React, {useEffect, useState} from "react";
 import api from "@/lib/api";
-import {useRouter} from "next/navigation";
+
+
+import {Check} from 'lucide-react'
+import {cn} from "@/lib/utils";
+import Image from "next/image";
 
 interface Props {
     params: { id: string }
@@ -52,12 +56,20 @@ interface IApplicationDetails {
     };
 }
 
-
+const statuses = [
+    {value: "yuborilgan", label: "Yuborilgan"},
+    {value: "mahalla", label: "Mahalla jarayonida"},
+    {value: "tuman", label: "Tuman"},
+    {value: "hudud", label: "Hudud"},
+    {value: "oxirgi_tasdiqlash", label: "Oxirgi tasdiqlash"},
+    {value: "mukofotlangan", label: "Mukofotlangan"},
+    {value: "rad_etilgan", label: "Rad etilgan"},
+];
 
 
 export default function ApplicationDetail({params}: Props) {
     const [detail, setDetail] = useState<IApplicationDetails>();
-    const {id} = React.use(params);
+    const {id} = params
 
 
     const getApplicationDetails = async () => {
@@ -65,14 +77,16 @@ export default function ApplicationDetail({params}: Props) {
         setDetail(data.data)
     }
 
-     const generateImage = (url: string | undefined): string => {
+    const generateImage = (url: string | undefined): string => {
         return `https://grand-production.up.railway.app${url}`
     }
 
 
     useEffect(() => {
         getApplicationDetails()
-    }, [])
+    }, [id])
+
+
 
     return (
         <ProtectedRoute>
@@ -81,11 +95,29 @@ export default function ApplicationDetail({params}: Props) {
                 <div className='flex items-center justify-between mb-8'>
                     <div className='flex items-center gap-6'>
                         <div className='w-[100px] h-[100px] bg-white rounded-full overflow-hidden'>
-                            <img src={generateImage(detail?.xizmat_rasmi)} alt="zulfiya" className='w-full h-full object-cover'/>
+                            <Image src={generateImage(detail?.xizmat_rasmi)} alt="zulfiya"
+                                   className='w-full h-full object-cover'/>
                         </div>
                         <p className='text-[18px] text-white font-medium'>{detail?.xizmat_nomi}</p>
                     </div>
                     <span className='text-[18px] text-white font-medium'>{detail?.vaqtlar.yuborilgan}</span>
+                </div>
+                <div className='relative px-20 mb-[100px]'>
+                    <div className='h-3  bg-white'></div>
+                    <div className='absolute -top-[14px] flex items-center w-[calc(100%-160px)]'>
+                        {statuses.map((item, index) =>
+                            <>
+                                <div className='min-w-10 h-10 p-1 rounded-full bg-white'>
+                                    <div
+                                        className={cn(item.value === detail?.holati_code ? 'bg-[#00E82B]' : 'bg-[#013870]', 'w-full h-full rounded-full  flex items-center justify-center')}>
+                                        <Check className='text-white'/>
+                                    </div>
+                                </div>
+                                {index !== statuses.length - 1 && <div
+                                    className={cn(item.value === detail?.holati_code ? 'bg-[#00E82B]' : 'bg-[#013870]', 'h-2 w-full')}></div>}
+                            </>
+                        )}
+                    </div>
                 </div>
                 <div className="grid grid-cols-12 gap-y-12 px-8">
                     <div className="col-span-6 text-[20px] text-white">F.I.SH</div>
@@ -114,25 +146,24 @@ export default function ApplicationDetail({params}: Props) {
                             <>
                                 <div className="col-span-6 text-[20px] text-white">Tavsiya xati</div>
                                 <a className='col-span-6 text-[20px] text-white'
-                                   href={detail?.hujjatlar.tavsiya_xati.fayl_url}>{detail?.hujjatlar.tavsiya_xati.fayl_nomi}</a>
+                                   href={detail?.hujjatlar.tavsiya_xati.fayl_url || ''}>{detail?.hujjatlar.tavsiya_xati.fayl_nomi}</a>
                             </>
                         )
                     }
 
-                    {
-                        detail?.hujjatlar.sertifikatlar.length > 0 && (
-                            <>
-                                <div className="col-span-6 text-[20px] text-white">Sertifikatlar</div>
-                                <div className="col-span-6 text-[20px] text-white flex flex-col gap-2">
-                                    {detail?.hujjatlar.sertifikatlar.map(item => {
-                                        return (
-                                            <a href={item.fayl_url} key={item.id}>{item.fayl_nomi}</a>
-                                        );
-                                    })}
-                                </div>
-                            </>
-                        )
-                    }
+                    {detail?.hujjatlar?.sertifikatlar?.length ? (
+                        <>
+                            <div className="col-span-6 text-[20px] text-white">Sertifikatlar</div>
+                            <div className="col-span-6 text-[20px] text-white flex flex-col gap-2">
+                                {detail?.hujjatlar?.sertifikatlar?.map(item => (
+                                    <a href={item.fayl_url} key={item.id}>
+                                        {item.fayl_nomi}
+                                    </a>
+                                ))}
+                            </div>
+                        </>
+                    ) : null}
+
 
 
                     {/*<div className="col-span-6 text-[20px] text-white">Foto</div>*/}

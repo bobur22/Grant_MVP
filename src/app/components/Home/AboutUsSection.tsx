@@ -55,7 +55,7 @@ export function AboutSection() {
                 <div className="bg-green-500 rounded-full p-1">
                   <Check className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-gray-200">Elektron hujjat yuklash — qog'ozsizlashuv</span>
+                <span className="text-gray-200">Elektron hujjat yuklash — qog`ozsizlashuv</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="bg-green-500 rounded-full p-1">
@@ -74,7 +74,7 @@ export function AboutSection() {
             {/* CTA Button */}
             <div className="pt-4">
               <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-medium">
-                Bog'laning
+                Bog`laning
               </Button>
             </div>
           </div>

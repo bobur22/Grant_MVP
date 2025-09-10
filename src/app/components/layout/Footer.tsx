@@ -10,8 +10,8 @@ export function Footer() {
   
               {/* Copyright text */}
               <div className="text-sm text-gray-300 space-y-2">
-                <p>Ma'lumotlardan foydalanganda www.president.uz ga havola ko'rsatilishi shart</p>
-                <p>O'zbekiston Respublikasi Prezidentining rasmiy veb-sayti</p>
+                <p>Ma`lumotlardan foydalanganda www.president.uz ga havola ko`rsatilishi shart</p>
+                <p>O`zbekiston Respublikasi Prezidentining rasmiy veb-sayti</p>
                 <p>Barcha huquqlari himoyalangan</p>
               </div>
             </div>

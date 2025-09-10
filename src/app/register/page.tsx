@@ -189,7 +189,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-[#1e3a8a] flex items-center justify-center p-4">
       <div className="bg-[#1e3a8a] rounded-xl p-8 shadow-lg w-full max-w-md text-center border border-blue-800">
-        <h1 className="text-2xl font-bold text-white mb-8">Ro'yxatdan o'tish</h1>
+        <h1 className="text-2xl font-bold text-white mb-8">Ro`yxatdan o`tish</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* First Name */}
@@ -405,7 +405,7 @@ export default function RegisterPage() {
           </Button>
 
           <div className="text-sm mt-4">
-            <span className="text-white">Avval Ro'yxatdan O'tganmisiz? </span>
+            <span className="text-white">Avval Ro`yxatdan O`tganmisiz? </span>
             <Link href="/login" className="text-orange-400 underline hover:text-orange-300 transition-colors">
               Log In
             </Link>

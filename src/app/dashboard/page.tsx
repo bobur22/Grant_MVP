@@ -2,51 +2,15 @@
 
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Search} from "lucide-react";
 import {useAuth} from "@/context/AuthContext";
 import React, {useEffect, useState} from "react";
 import api from "@/lib/api";
-import {id} from "postcss-selector-parser";
 import {cn} from "@/lib/utils";
 import {useRouter} from "next/navigation";
-
-// const applications = [
-//     {
-//         id: "3456789874",
-//         service: '"Zulfiya mukofoti" olish uchun ariza yuborish',
-//         date: "16.06.2025",
-//         status: "Tayyorlandi",
-//         statusColor: "bg-green-500",
-//         source: "Mcompany ilovasi",
-//     },
-//     {
-//         id: "3456789875",
-//         service: "\"Mard o'g'lon\" davlat mukofoti",
-//         date: "26.06.2025",
-//         status: "Jarayonda",
-//         statusColor: "bg-orange-500",
-//         source: "Mcompany ilovasi",
-//     },
-//     {
-//         id: "3456789876",
-//         service: '"Mustaqillik" ordeni',
-//         date: "5.06.2025",
-//         status: "Rad etildi",
-//         statusColor: "bg-red-500",
-//         source: "Mcompany ilovasi",
-//     },
-//     {
-//         id: "3456789877",
-//         service: '"El-yurt hurmati" ordeni',
-//         date: "1.06.2025",
-//         status: "Tayyorlandi",
-//         statusColor: "bg-green-500",
-//         source: "Mcompany ilovasi",
-//     },
-// ];
+import Image from "next/image";
 
 export interface RewardResponse {
     id: number;
@@ -181,7 +145,7 @@ export default function DashboardPage() {
                         <Avatar className="w-20 h-20">
                             <AvatarImage src="/placeholder.svg?height=80&width=80"/>
                             <AvatarFallback className="bg-blue-600 text-white text-lg">
-                                <img src={user.profile_picture} alt="Xasanova go'zal"/>
+                                <Image src={user.profile_picture || ''} alt="Xasanova go'zal"/>
                             </AvatarFallback>
                         </Avatar>
                         <div>

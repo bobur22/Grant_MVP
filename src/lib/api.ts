@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import {useRouter} from "next/navigation";
 
 // Base URL
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -106,7 +105,7 @@ const refreshAccessToken = async (refreshToken: string) => {
 export interface ApiError {
   message: string;
   status?: number;
-  data?: any;
+  data?: unknown;
 }
 
 export interface User {
@@ -166,7 +165,7 @@ export const loginUser = async (credentials: LoginRequest): Promise<LoginRespons
       };
       
       return loginResponse;
-    } catch (error: any) {
+    } catch (error: unknown) {
       // ... error handling unchanged
       throw error;
     }
@@ -196,15 +195,15 @@ export const getUserProfile = async (): Promise<User> => {
   try {
     const response = await api.get<User>('/accounts/users/me');
     return response.data;
-  } catch (error: any) {
-    if (error.response) {
-      const apiError: ApiError = {
-        message: error.response.data?.message || 'Foydalanuvchi ma\'lumotlarini olishda xatolik',
-        status: error.response.status,
-        data: error.response.data
-      };
-      throw apiError;
-    }
+  } catch (error: unknown) {
+    // if (error.response) {
+    //   const apiError: ApiError = {
+    //     message: error.response.data?.message || 'Foydalanuvchi ma\'lumotlarini olishda xatolik',
+    //     status: error.response.status,
+    //     data: error.response.data
+    //   };
+    //   throw apiError;
+    // }
     throw error;
   }
 };

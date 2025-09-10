@@ -5,6 +5,7 @@ import { Play, Pause, Volume2, VolumeX, Maximize, Settings, SkipBack, SkipForwar
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import Image from "next/image";
 
 interface VideoPlayerProps {
   src?: string
@@ -146,12 +147,12 @@ export default function VideoPlayer({ src, thumbnail, title }: VideoPlayerProps)
 
     document.addEventListener("keydown", handleKeyPress)
     return () => document.removeEventListener("keydown", handleKeyPress)
-  }, [isPlaying])
+  }, [isPlaying, togglePlay, toggleMute])
 
   if (!src) {
     return (
       <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden group cursor-pointer">
-        <img src={thumbnail || "/placeholder.svg"} alt={title} className="w-full h-full object-cover" />
+        <Image src={thumbnail || "/placeholder.svg"} alt={title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
           <div className="bg-blue-600 hover:bg-blue-700 rounded-full p-6 transition-colors">
             <Play className="w-12 h-12 text-white ml-1" />

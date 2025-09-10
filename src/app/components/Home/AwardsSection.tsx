@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import Image from "next/image";
 
 export function AwardsSection() {
   const awards = [
@@ -39,8 +40,8 @@ export function AwardsSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6">Mukofotlar turlari</h2>
           <p className="text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Davlat mukofotlari — bu nafaqat shaxsiy yutuqlarning e'tirofi, balki butun jamiyat oldida hurmat va
-            obro'ning ifodasidir. Platformamiz orqali quyidagi yuqori mukofotlarga ariza topshirish imkoniyati mavjud:
+            Davlat mukofotlari — bu nafaqat shaxsiy yutuqlarning e`tirofi, balki butun jamiyat oldida hurmat va
+            obro`ning ifodasidir. Platformamiz orqali quyidagi yuqori mukofotlarga ariza topshirish imkoniyati mavjud:
           </p>
         </div>
 
@@ -49,7 +50,7 @@ export function AwardsSection() {
             <Card key={award.id} className="bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
               <CardContent className="p-6 text-center">
                 <div className="mb-6">
-                  <img
+                  <Image
                     src={award.image || "/placeholder.svg"}
                     alt={award.name}
                     className="w-24 h-24 mx-auto object-contain"

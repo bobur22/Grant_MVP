@@ -4,8 +4,9 @@ import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Share2, Star, X } from "lucide-react"
+import { Share2, Star } from "lucide-react"
 import ApplicationWizard from "@/app/components/AplicationWizard/ApplicationWizard"
+import Image from "next/image";
 
 interface ServiceModalProps {
   isOpen: boolean
@@ -74,9 +75,9 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                 {/* Award Image */}
                 <div className="flex-shrink-0">
                   <div className="w-32 h-32 lg:w-40 lg:h-40 bg-white rounded-lg p-4 flex items-center justify-center">
-                    <img
+                    <Image
                       src={service.image || "/placeholder.svg"}
-                      alt={service.title}
+                      alt={service.title || ''}
                       className="w-[76px] h-full object-cover"
                     />
                   </div>
@@ -105,7 +106,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                       onClick={() => setIsFavorite(!isFavorite)}
                     >
                       <Star className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
-                      Tanlanganiga qo'shish
+                      Tanlanganiga qo`shish
                     </Button>
                     <Button className="bg-orange-500 hover:bg-orange-600 text-white" onClick={handleUseService}>
                       Xizmatlardan foydalanish
@@ -209,7 +210,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                           <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
                             <span className="text-xs">⚖️</span>
                           </div>
-                          Xizmat ko'rsatishning huquqiy asosi
+                          Xizmat ko`rsatishning huquqiy asosi
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="text-blue-200 pl-11">{serviceDetails.legalBasis}</AccordionContent>

@@ -1,17 +1,15 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { 
-  loginUser, 
-  logoutUser, 
-  getUserProfile, 
-  isTokenValid, 
-  LoginRequest, 
+import {
+  loginUser,
+  logoutUser,
+  getUserProfile,
+  isTokenValid,
+  LoginRequest,
   LoginResponse,
-  User,
-  ApiError 
+  User, getAccessToken,
 } from '@/lib/api';
-import {router} from "next/client";
 import {useRouter} from "next/navigation";
 
 interface AuthContextType {
@@ -126,7 +124,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         
       } catch (error: any) {
         console.error('Login error:', error);
-        
         let errorMessage = 'Kirish jarayonida xatolik yuz berdi';
         
         if (error.status === 401 || error.status === 400) {

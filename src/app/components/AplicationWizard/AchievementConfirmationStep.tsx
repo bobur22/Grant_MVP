@@ -107,7 +107,7 @@ export default function AchievementConfirmationStep({
             ) : (
               <div className="text-center">
                 <Upload className="w-8 h-8 text-blue-300 mx-auto mb-2" />
-                <p className="text-blue-300 text-sm mb-2"> {user?.first_name} {user?.last_name}</p>
+                <p className="text-blue-300 text-sm mb-2"> {user?.first_name + ' ' + user?.last_name}</p>
                 <Button
                   variant="outline"
                   onClick={() => recommendationRef.current?.click()}
@@ -162,7 +162,7 @@ export default function AchievementConfirmationStep({
                   onClick={() => certificatesRef.current?.click()}
                   className="!border-blue-600 text-white bg-blue-600 w-full"
                 >
-                  Yana fayl qo'shish
+                  Yana fayl qo`shish
                 </Button>
               </div>
             ) : (

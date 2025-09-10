@@ -1,10 +1,10 @@
 'use client'
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FileText, Shield, BookOpen, Brain, User, MessageSquare, BarChart3, Wallet, Globe } from "lucide-react"
-import Image from "next/image"
 import {useAuth} from "@/context/AuthContext";
+import Image from "next/image";
 
 const legalDocuments = [
   {
@@ -83,7 +83,7 @@ export default function LegalPage() {
       <div className="bg-[#1e40af] rounded-lg p-6 mb-6">
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-300">
-            <img src={user?.profile_picture} alt="User Avatar" className="w-full h-full object-cover" />
+            <Image src={user?.profile_picture || ''} alt="User Avatar" className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>

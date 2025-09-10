@@ -19,12 +19,6 @@ const navigationItems = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
-  const {user} = useAuth()
-  const router = useRouter()
-
-  const openLoginModal = () => {
-    ['', null, undefined].includes(user?.id) ? setIsAuthModalOpen(true) : router.push('/dashboard')
-  }
 
   return (
     <>
@@ -65,7 +59,7 @@ export function Navbar() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-white">
-                <DropdownMenuItem>O'zbek</DropdownMenuItem>
+                <DropdownMenuItem>O`zbek</DropdownMenuItem>
                 <DropdownMenuItem>Русский</DropdownMenuItem>
                 <DropdownMenuItem>English</DropdownMenuItem>
               </DropdownMenuContent>
@@ -73,7 +67,7 @@ export function Navbar() {
 
             <Button
               className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md font-medium"
-              onClick={() => openLoginModal()}
+              onClick={() => setIsAuthModalOpen(true)}
             >
               Kabinet
             </Button>

@@ -1,8 +1,8 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {useAuth} from "@/context/AuthContext";
+import Image from "next/image";
 
 export default function FAQPage() {
   const {user} = useAuth()
@@ -12,7 +12,7 @@ export default function FAQPage() {
          <div className="bg-[#1e40af] rounded-lg p-6 mb-6">
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-300">
-            <img src={user?.profile_picture} alt="User Avatar" className="w-full h-full object-cover" />
+            <Image src={user?.profile_picture || ''} alt="User Avatar" className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
@@ -32,7 +32,7 @@ export default function FAQPage() {
          </div>
 
       <div className="space-y-6">
-        <h1 className="text-white text-2xl font-bold">Ko'p beriladigan savollar</h1>
+        <h1 className="text-white text-2xl font-bold">Ko`p beriladigan savollar</h1>
 
         <Card className="bg-[#1e3a8a] border-none">
           <CardContent className="p-6">
@@ -40,20 +40,20 @@ export default function FAQPage() {
               <AccordionItem value="item-1" className="border-none">
                 <AccordionTrigger
                     className="bg-gradient-to-r from-[#2563eb] to-[#2563eb] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white px-4 py-3 rounded-lg text-left font-medium transition-all duration-200 [&[data-state=open]>svg]:rotate-45 [&>svg]:text-white">
-                  Ochiq vakansiyalarto'g'risida ma'lumotni qayerdan olish bo'ladi?
+                  Ochiq vakansiyalarto`g`risida ma'lumotni qayerdan olish bo`ladi?
                 </AccordionTrigger>
                 <AccordionContent className="px-4 py-3 text-blue-200 leading-relaxed">
-                  Davlat idoralari va tashkilotlarning bo'sh ish o'rinlari haqida rasmiy portallar va e'lonlar orqali
+                  Davlat idoralari va tashkilotlarning bo`sh ish o`rinlari haqida rasmiy portallar va e`lonlar orqali
                   aholiqqa taqdim etiladigan ochiq axborotdir.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-2" className="border-none">
                 <AccordionTrigger className="bg-gradient-to-r from-[#2563eb] to-[#2563eb] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white px-4 py-3 rounded-lg text-left font-medium transition-all duration-200 [&[data-state=open]>svg]:rotate-45 [&>svg]:text-white">
-                  "Mening profilim" dagi ma'lumotlar qay tarzda shakillanadi?
+                  <b>Mening profilim</b> dagi ma`lumotlar qay tarzda shakillanadi?
                 </AccordionTrigger>
                 <AccordionContent className="px-4 py-3 text-blue-200 leading-relaxed">
-                  Shaxsiy profil ma'lumotlari foydalanuvchi tomonidan kiritilgan shaxsiy ma'lumotlar, ta'lim, ish
+                  Shaxsiy profil ma`lumotlari foydalanuvchi tomonidan kiritilgan shaxsiy ma`lumotlar, ta`lim, ish
                   tajribasi va malaka sertifikatlari asosida shakllanadi.
                 </AccordionContent>
               </AccordionItem>
@@ -63,17 +63,17 @@ export default function FAQPage() {
                   Ochiq vakansiya ariza qanday tartibda yuboriladi?
                 </AccordionTrigger>
                 <AccordionContent className="px-4 py-3 text-blue-200 leading-relaxed">
-                  Ochiq vakansiyaga ariza berish uchun tizimga ro'yxatdan o'tish, profil to'ldirish va kerakli
+                  Ochiq vakansiyaga ariza berish uchun tizimga ro`yxatdan o`tish, profil to`ldirish va kerakli
                   hujjatlarni yuklash zarur.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-4" className="border-none">
                 <AccordionTrigger className="bg-gradient-to-r from-[#2563eb] to-[#2563eb] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white px-4 py-3 rounded-lg text-left font-medium transition-all duration-200 [&[data-state=open]>svg]:rotate-45 [&>svg]:text-white">
-                  Vakansiya portali qanday tartibda ro'yxatdan o'tiladi?
+                  Vakansiya portali qanday tartibda ro`yxatdan o`tiladi?
                 </AccordionTrigger>
                 <AccordionContent className="px-4 py-3 text-blue-200 leading-relaxed">
-                  Portalga ro'yxatdan o'tish uchun telefon raqam, email manzil va shaxsiy ma'lumotlarni kiritish, SMS
+                  Portalga ro`yxatdan o`tish uchun telefon raqam, email manzil va shaxsiy ma`lumotlarni kiritish, SMS
                   orqali tasdiqlash kerak.
                 </AccordionContent>
               </AccordionItem>
@@ -83,7 +83,7 @@ export default function FAQPage() {
                   Ochiq vakansiyalarni qaysi mezonlar asosida tanilash imkoniyati mavjud?
                 </AccordionTrigger>
                 <AccordionContent className="px-4 py-3 text-blue-200 leading-relaxed">
-                  Vakansiyalarni hudud, soha, lavozim, maosh miqdori, ish tajribasi talabi va boshqa mezonlar bo'yicha
+                  Vakansiyalarni hudud, soha, lavozim, maosh miqdori, ish tajribasi talabi va boshqa mezonlar bo`yicha
                   filtrlash mumkin.
                 </AccordionContent>
               </AccordionItem>

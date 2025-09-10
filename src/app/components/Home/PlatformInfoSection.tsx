@@ -80,7 +80,7 @@ export function PlatformInfoSection() {
                 <div className="w-8 h-8 bg-orange-500 rounded"></div>
               </div>
               <h3 className="font-semibold text-slate-800 mb-3">Mukofot topshirish</h3>
-              <p className="text-sm text-slate-600">Rasmiy tadbir — mukofot qo'lga olish, shaxsiy maqtov qog'ozi</p>
+              <p className="text-sm text-slate-600">Rasmiy tadbir — mukofot qo`lga olish, shaxsiy maqtov qog`ozi</p>
             </div>
           </div>
         </div>

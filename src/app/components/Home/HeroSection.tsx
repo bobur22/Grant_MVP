@@ -30,17 +30,17 @@ export function HeroSection() {
           {/* Content */}
           <div className="text-white space-y-6">
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-balance">
-              Davlat mukofotlari — Sizning yutuqlaringiz e'tirofi
+              Davlat mukofotlari — Sizning yutuqlaringiz e`tirofi
             </h1>
 
             <p className="text-lg lg:text-xl text-blue-100 leading-relaxed max-w-2xl">
-              Sizning fidoyiligingiz, bilim va iste'dodingiz davlat miqyosida qadrlanishga loyiq. Endi mukofotga nomzod
-              bo'lish yanada qulay, tezkor va shaffof jarayonga aylandi.
+              Sizning fidoyiligingiz, bilim va iste`dodingiz davlat miqyosida qadrlanishga loyiq. Endi mukofotga nomzod
+              bo`lish yanada qulay, tezkor va shaffof jarayonga aylandi.
             </p>
 
             <div className="pt-4">
               <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-lg font-semibold rounded-lg transition-colors">
-                Bog'laning
+                Bog`laning
               </Button>
             </div>
           </div>

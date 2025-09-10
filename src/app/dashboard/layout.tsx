@@ -1,15 +1,15 @@
 "use client"
 
-import React, {useEffect} from "react"
+import React from "react"
 import {useState} from "react"
 import {Button} from "@/components/ui/button"
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
-import {FileText, Grid3X3, Scale, HelpCircle, BookOpen, History, Menu, X, Phone, Bell, LogOut} from "lucide-react"
+import {FileText, Grid3X3, Scale, HelpCircle, BookOpen, History, Menu, X,  Bell} from "lucide-react"
 import Link from "next/link"
-import {usePathname, useRouter} from "next/navigation"
+import {usePathname} from "next/navigation"
 import {useAuth} from "@/context/AuthContext"
 import {ProtectedRoute} from "@/components/ProtectedRoute"
-import api from "@/lib/api";
+import Image from "next/image";
 
 const menuItems = [
     {href: "/dashboard", label: "Mening Arizalarim", icon: FileText},
@@ -83,7 +83,7 @@ export default function DashboardLayout({
                                 isSidebarCollapsed ? "px-2" : "px-4"
                             } py-2 transition-all duration-300`}
                         >
-                            <img src="/communicate-logo.svg" alt=""/>
+                            <Image src="/communicate-logo.svg" alt=""/>
                             {!isSidebarCollapsed && <span className="ml-2">Aloqa</span>}
                         </Button>
 
@@ -120,7 +120,7 @@ export default function DashboardLayout({
                             <Avatar className="w-10 h-10">
                                 <AvatarImage src="/professional-woman-avatar.png" alt="User Avatar"/>
                                 <AvatarFallback className="bg-blue-600 text-white">
-                                    <img src={user?.profile_picture} alt="Xasanova Go'zal"/>
+                                    <Image src={user?.profile_picture || ''} alt="Xasanova Go'zal"/>
                                 </AvatarFallback>
                             </Avatar>
                         </div>

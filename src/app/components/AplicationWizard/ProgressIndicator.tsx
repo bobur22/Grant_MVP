@@ -11,7 +11,7 @@ export default function ProgressIndicator({ steps, onStepClick }: ProgressIndica
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center mb-4">
-        {steps.map((step, index) => (
+        {steps.map((step) => (
           <button
             key={step.id}
             onClick={() => onStepClick(step.id)}
