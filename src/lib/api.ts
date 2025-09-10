@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import {useRouter} from "next/navigation";
 
 // Base URL
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -182,6 +183,7 @@ export const logoutUser = async (): Promise<void> => {
     // }
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
+
   } catch (error) {
     console.error('Logout error:', error);
   } finally {

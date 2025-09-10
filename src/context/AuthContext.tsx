@@ -11,6 +11,8 @@ import {
   User,
   ApiError 
 } from '@/lib/api';
+import {router} from "next/client";
+import {useRouter} from "next/navigation";
 
 interface AuthContextType {
   user: User | null;
@@ -41,6 +43,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const router = useRouter()
   
     // isAuthenticated ni dinamik hisoblash o'rniga state sifatida qo'shamiz
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -76,13 +80,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           } else {
             // Token noto'g'ri bo'lsa tozalash
             console.log('Token invalid, clearing...');
-            await logoutUser();
+            await logoutUser().then(() => router.push('/'))
             setUser(null);
             setIsAuthenticated(false);
           }
         } catch (error) {
           console.error('Failed to initialize auth:', error);
-          await logoutUser();
+          await logoutUser().then(() => router.push('/'));
           setUser(null);
           setIsAuthenticated(false);
         } finally {
@@ -146,7 +150,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const logout = async (): Promise<void> => {
       try {
         setIsLoading(true);
-        await logoutUser();
+        await logoutUser().then(() => router.push('/'));
       } catch (error) {
         console.error('Logout error:', error);
       } finally {
