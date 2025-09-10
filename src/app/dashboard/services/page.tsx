@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import ServiceModal from "@/app/components/dashboard/ServiceModal"
+import {useAuth} from "@/context/AuthContext";
 
 const services = [
   {
@@ -45,6 +46,7 @@ const services = [
 ]
 
 export default function ServicesPage() {
+    const {user} = useAuth()
   const [selectedService, setSelectedService] = useState<(typeof services)[0] | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -69,15 +71,15 @@ export default function ServicesPage() {
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <h3 className="text-white font-semibold mb-1">F.I.SH.</h3>
-              <p className="text-blue-200 text-sm">Xasanova Go'zal O'ktam qizi</p>
+              <p className="text-blue-200 text-sm">{user?.first_name} {user?.last_name}</p>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-1">Telefon raqam</h3>
-              <p className="text-blue-200 text-sm">+998 (94) 855 02 03</p>
+              <p className="text-blue-200 text-sm">{user?.phone_number}</p>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-1">Pochta manzili</h3>
-              <p className="text-blue-200 text-sm">xasanovagozal3@gmail.com</p>
+              <p className="text-blue-200 text-sm">{user?.email}</p>
             </div>
           </div>
         </div>
@@ -91,11 +93,11 @@ export default function ServicesPage() {
         {services.map((service) => (
           <Card key={service.id} className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="w-20 h-20 mb-4 flex items-center justify-center">
+              <div className="w-[76px] h-[126px] mb-4 flex items-center justify-center">
                 <img
                   src={service.image || "/placeholder.svg"}
                   alt={service.title}
-                  className="w-[76px] h-[106px] object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <h3 className="text-gray-800 font-medium mb-4 text-sm leading-tight">{service.title}</h3>

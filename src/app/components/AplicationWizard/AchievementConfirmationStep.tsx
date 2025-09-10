@@ -94,7 +94,7 @@ export default function AchievementConfirmationStep({
                     size="sm"
                     variant="ghost"
                     onClick={() => onUpdate({ recommendationLetter: null })}
-                    className="text-white hover:bg-red-600"
+                    className="!text-white hover:bg-red-600"
                   >
                     <X className="w-4 h-4" />
                   </Button>
@@ -107,7 +107,7 @@ export default function AchievementConfirmationStep({
                 <Button
                   variant="outline"
                   onClick={() => recommendationRef.current?.click()}
-                  className="border-blue-600 text-white hover:bg-blue-600"
+                  className="!border-blue-600 text-white bg-blue-600 "
                 >
                   Fayl tanlash
                 </Button>
@@ -156,7 +156,7 @@ export default function AchievementConfirmationStep({
                 <Button
                   variant="outline"
                   onClick={() => certificatesRef.current?.click()}
-                  className="border-blue-600 text-white hover:bg-blue-600 w-full"
+                  className="!border-blue-600 text-white bg-blue-600 w-full"
                 >
                   Yana fayl qo'shish
                 </Button>
@@ -168,7 +168,7 @@ export default function AchievementConfirmationStep({
                 <Button
                   variant="outline"
                   onClick={() => certificatesRef.current?.click()}
-                  className="border-blue-600 text-white hover:bg-blue-600"
+                  className="!border-blue-600 text-white bg-blue-600 "
                 >
                   Fayl tanlash
                 </Button>

@@ -16,10 +16,10 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   console.log('ProtectedRoute - isLoading:', isLoading, 'isAuthenticated:', isAuthenticated, 'user:', user);
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      console.log('Redirecting to home page - not authenticated');
-      router.push('/');
-    }
+    // if (!isLoading && !isAuthenticated) {
+    //   console.log('Redirecting to home page - not authenticated');
+    //   router.push('/');
+    // }
   }, [isAuthenticated, isLoading, router]);
 
   if (isLoading) {

@@ -191,7 +191,7 @@ export const logoutUser = async (): Promise<void> => {
 // Foydalanuvchi ma'lumotlarini olish
 export const getUserProfile = async (): Promise<User> => {
   try {
-    const response = await api.get<User>('/accounts/profile/');
+    const response = await api.get<User>('/accounts/users/me');
     return response.data;
   } catch (error: any) {
     if (error.response) {

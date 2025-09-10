@@ -45,6 +45,7 @@ export function useFormWizard(serviceId: number, serviceTitle: string) {
       ...prev,
       achievementConfirmation: { ...prev.achievementConfirmation, ...data },
     }))
+      console.log(data)
   }, [])
 
   const nextStep = useCallback(() => {
