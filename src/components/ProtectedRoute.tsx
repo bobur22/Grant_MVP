@@ -36,7 +36,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
   if (!isAuthenticated) {
     console.log('ProtectedRoute - Not authenticated, will redirect');
-    return null; // Router boshqa sahifaga yo'naltirayotgan vaqtda
+    return null; // Router boshqa sahifaga yo&apos;naltirayotgan vaqtda
   }
 
   console.log('ProtectedRoute - Authenticated, rendering children');
@@ -82,7 +82,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 //   }
 
 //   if (!isAuthenticated) {
-//     return null; // Router boshqa sahifaga yo'naltirayotgan vaqtda
+//     return null; // Router boshqa sahifaga yo&apos;naltirayotgan vaqtda
 //   }
 
 //   return <>{children}</>;

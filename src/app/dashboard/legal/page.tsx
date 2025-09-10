@@ -9,35 +9,35 @@ import Image from "next/image";
 const legalDocuments = [
   {
     id: "electronic-government",
-    title: "Elektron hukumat to'g'risidagi qonun",
+    title: "Elektron hukumat to&apos;g'risidagi qonun",
     icon: FileText,
     content:
-      "Davlat xizmatlari raqamlashtirish, elektron hukumat tizimini rivojlantirish va fuqarolar uchun qulay sharoitlar yaratish to'g'risidagi asosiy qonun hujjatlari va qoidalar.",
+      "Davlat xizmatlari raqamlashtirish, elektron hukumat tizimini rivojlantirish va fuqarolar uchun qulay sharoitlar yaratish to&apos;g'risidagi asosiy qonun hujjatlari va qoidalar.",
   },
   {
     id: "cybersecurity",
-    title: "Kiberxfsizlik to'g'risidagi qonun",
+    title: "Kiberxfsizlik to&apos;g'risidagi qonun",
     icon: Shield,
     content:
-      "Axborot xavfsizligi, kiberxurujlardan himoyalanish, shaxsiy ma'lumotlarni muhofaza qilish va raqamli muhitda xavfsizlikni ta'minlash bo'yicha qonuniy asoslar.",
+      "Axborot xavfsizligi, kiberxurujlardan himoyalanish, shaxsiy ma'lumotlarni muhofaza qilish va raqamli muhitda xavfsizlikni ta'minlash bo&apos;yicha qonuniy asoslar.",
   },
   {
     id: "information-access",
-    title: "Axborot olish kafolatlari va erkinlik to'g'risidagi qonun",
+    title: "Axborot olish kafolatlari va erkinlik to&apos;g'risidagi qonun",
     icon: BookOpen,
     content:
-      "Fuqarolarning davlat organlari faoliyati haqida ma'lumot olish huquqi, axborotga ochiq kirish va shaffoflikni ta'minlash bo'yicha qonuniy kafolatlar.",
+      "Fuqarolarning davlat organlari faoliyati haqida ma'lumot olish huquqi, axborotga ochiq kirish va shaffoflikni ta'minlash bo&apos;yicha qonuniy kafolatlar.",
   },
   {
     id: "ai-strategy",
     title: "Sun'iy intellekt texnologiyalarini rivojlantirish strategiyasi",
     icon: Brain,
     content:
-      "Sun'iy intellekt texnologiyalarini joriy etish, rivojlantirish va qo'llash bo'yicha davlat strategiyasi va yo'l xaritasi.",
+      "Sun'iy intellekt texnologiyalarini joriy etish, rivojlantirish va qo&apos;llash bo&apos;yicha davlat strategiyasi va yo&apos;l xaritasi.",
   },
   {
     id: "personal-data",
-    title: "Shaxsga doir ma'lumotlar to'g'risidagi qonun",
+    title: "Shaxsga doir ma'lumotlar to&apos;g'risidagi qonun",
     icon: User,
     content:
       "Shaxsiy ma'lumotlarni himoya qilish, qayta ishlash, saqlash va uzatish tartib-qoidalari hamda fuqarolarning shaxsiy ma'lumotlari ustidan nazorat huquqi.",
@@ -46,28 +46,28 @@ const legalDocuments = [
 const legalDocumentsRight = [
   {
     id: "appeals",
-    title: "Jismoniy va yuridik shaxslarning murojaatlari to'g'risidagi qonun",
+    title: "Jismoniy va yuridik shaxslarning murojaatlari to&apos;g'risidagi qonun",
     icon: MessageSquare,
     content:
-      "Fuqarolar va tashkilotlarning davlat organlariga murojaat qilish tartibi, murojaatlarni ko'rib chiqish va javob berish majburiyatlari.",
+      "Fuqarolar va tashkilotlarning davlat organlariga murojaat qilish tartibi, murojaatlarni ko&apos;rib chiqish va javob berish majburiyatlari.",
   },
   {
     id: "digital-uzbekistan",
-    title: "Raqamli O'zbekiston -2030 strategiyasi to'g'risidagi Farmon",
+    title: "Raqamli o&apos;zbekiston -2030 strategiyasi to&apos;g'risidagi Farmon",
     icon: BarChart3,
     content:
-      "2030 yilgacha bo'lgan davrda raqamli iqtisodiyotni rivojlantirish, raqamli texnologiyalarni joriy etish va raqamli transformatsiya strategiyasi.",
+      "2030 yilgacha bo&apos;lgan davrda raqamli iqtisodiyotni rivojlantirish, raqamli texnologiyalarni joriy etish va raqamli transformatsiya strategiyasi.",
   },
   {
     id: "budget-participation",
-    title: "Budjet Jarayonida fuqarolarning ishtirokini to'g'risidagi qaror",
+    title: "Budjet Jarayonida fuqarolarning ishtirokini to&apos;g'risidagi qaror",
     icon: Wallet,
     content:
-      "Fuqarolarning davlat byudjeti tuzish va ijro etish jarayonlarida ishtirok etish huquqi va mexanizmlari to'g'risidagi qoidalar.",
+      "Fuqarolarning davlat byudjeti tuzish va ijro etish jarayonlarida ishtirok etish huquqi va mexanizmlari to&apos;g'risidagi qoidalar.",
   },
   {
     id: "government-portal",
-    title: "Yagona interaktiv davlat xizmatlari portali to'g'risidagi qaror",
+    title: "Yagona interaktiv davlat xizmatlari portali to&apos;g'risidagi qaror",
     icon: Globe,
     content:
       "Yagona davlat xizmatlari portalini yaratish, rivojlantirish va boshqarish, elektron xizmatlarni taqdim etish tartibi va qoidalari.",
