@@ -174,12 +174,14 @@ export const loginUser = async (credentials: LoginRequest): Promise<LoginRespons
 // Logout funksiyasi
 export const logoutUser = async (): Promise<void> => {
   try {
-    const refreshToken = getRefreshToken();
-    if (refreshToken) {
-      await api.post('/accounts/logout/', {
-        refresh_token: refreshToken
-      });
-    }
+    // const refreshToken = getRefreshToken();
+    // if (refreshToken) {
+    //   await api.post('/accounts/logout/', {
+    //     refresh_token: refreshToken
+    //   });
+    // }
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
   } catch (error) {
     console.error('Logout error:', error);
   } finally {
