@@ -16,7 +16,7 @@ interface ApplicationWizardProps {
     onClose: () => void
     service: {
         id: number
-        title: string
+        name: string
         image: string
     } | null
 }
@@ -33,7 +33,7 @@ export default function ApplicationWizard({isOpen, onClose, service}: Applicatio
         prevStep,
         goToStep,
         resetForm,
-    } = useFormWizard(service?.id || 0, service?.title || "")
+    } = useFormWizard(service?.id || 0, service?.name || "")
 
     useEffect(() => {
         if (!isOpen) {
@@ -144,7 +144,7 @@ export default function ApplicationWizard({isOpen, onClose, service}: Applicatio
                                 <div
                                     className="w-16 h-16 bg-white rounded-lg p-2 flex items-center justify-center flex-shrink-0">
                                     <Image src={service.image || "/placeholder.svg"}
-                                           alt={service.title || ''}
+                                           alt={service.name || ''}
                                            width={100} height={100}
                                            className="w-[30px] h-full object-cover"/>
                                 </div>
@@ -155,7 +155,7 @@ export default function ApplicationWizard({isOpen, onClose, service}: Applicatio
                                         Ushbu bo`lim yuborilgan barcha arizalaringizni tartibli ko`rinishda taqdim
                                         etiladi.
                                     </p>
-                                    <p className="text-white font-medium mt-2">{service.title}</p>
+                                    <p className="text-white font-medium mt-2">{service.name}</p>
                                 </div>
                             </div>
                         </DialogHeader>

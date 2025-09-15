@@ -13,7 +13,7 @@ interface ServiceModalProps {
   onClose: () => void
   service: {
     id: number
-    title: string
+    name: string
     image: string
     description?: string
   } | null
@@ -77,7 +77,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                   <div className="w-32 h-32 lg:w-40 lg:h-40 bg-white rounded-lg p-4 flex items-center justify-center">
                     <Image
                       src={service.image || "/placeholder.svg"}
-                      alt={service.title || ''}
+                      alt={service.name || ''}
                       className="w-[76px] h-full object-cover"
                       width={100} height={100}
                     />
@@ -87,7 +87,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                 {/* Award Info */}
                 <div className="flex-1">
                   <DialogHeader className="text-left mb-4">
-                    <DialogTitle className="text-2xl font-bold text-white mb-2">{service.title}</DialogTitle>
+                    <DialogTitle className="text-2xl font-bold text-white mb-2">{service?.name}</DialogTitle>
                     <p className="text-blue-200 text-sm leading-relaxed">{serviceDetails.description}</p>
                   </DialogHeader>
 

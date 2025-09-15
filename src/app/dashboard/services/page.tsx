@@ -86,7 +86,7 @@ export default function ServicesPage() {
                                     width={100} height={100}
                                 />
                             </div>
-                            <h3 className="text-gray-800 font-medium mb-4 text-sm leading-tight">{service?.title}</h3>
+                            <h3 className="text-gray-800 font-medium mb-4 text-sm leading-tight">{service?.name}</h3>
                             <div className='flex w-full cursor-pointer'
                                  onClick={() => handleServiceClick(service)}>
                                 <span
