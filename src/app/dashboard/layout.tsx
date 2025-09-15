@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import {Button} from "@/components/ui/button"
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
 import {FileText, Grid3X3, Scale, HelpCircle, BookOpen, History, Menu, X,  Bell} from "lucide-react"
@@ -10,6 +10,8 @@ import {usePathname} from "next/navigation"
 import {useAuth} from "@/context/AuthContext"
 import {ProtectedRoute} from "@/components/ProtectedRoute"
 import Image from "next/image";
+import api from "@/lib/api"
+import { useRouter } from "next/navigation"
 
 const menuItems = [
     {href: "/dashboard", label: "Mening Arizalarim", icon: FileText},
@@ -28,7 +30,29 @@ export default function DashboardLayout({
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
     const pathname = usePathname()
     const {user} = useAuth()
-
+    const [unreadCount, setUnreadCount] = useState(0);
+    const router = useRouter();
+    
+    // Stats olish uchun useEffect qo'shing:
+    useEffect(() => {
+        const fetchNotificationStats = async () => {
+            try {
+                const response = await api.get('/notifications/stats/');
+                setUnreadCount(response.data.unread_count);
+            } catch (error) {
+                console.error('Failed to fetch notification stats:', error);
+            }
+        };
+    
+        if (user) {
+            fetchNotificationStats();
+        }
+    }, [user]);
+    
+    // unreadCount ni global context yoki prop sifatida boshqarish uchun funksiya:
+    const updateUnreadCount = (newCount: number) => {
+        setUnreadCount(newCount);
+    };
 
 
     return (
@@ -83,7 +107,7 @@ export default function DashboardLayout({
                                 isSidebarCollapsed ? "px-2" : "px-4"
                             } py-2 transition-all duration-300`}
                         >
-                            <Image src="/communicate-logo.svg" alt=""/>
+                            <Image src="/communicate-logo.svg" alt="communicate-logo" width={20} height={20}/>
                             {!isSidebarCollapsed && <span className="ml-2">Aloqa</span>}
                         </Button>
 
@@ -114,13 +138,23 @@ export default function DashboardLayout({
 
                         {/* Right side - Notifications and Avatar */}
                         <div className="flex items-center gap-4">
-                            <Button variant="ghost" size="sm" className="text-white hover:bg-blue-800 p-2 rounded-lg">
-                                <Bell size={20}/>
-                            </Button>
+                        <Button 
+    variant="ghost" 
+    size="sm" 
+    className="text-white hover:bg-blue-800 p-2 rounded-lg relative"
+    onClick={() => router.push('/dashboard/notifications')}
+>
+    <Bell size={20}/>
+    {unreadCount > 0 && (
+        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            {unreadCount}
+        </span>
+    )}
+</Button>
                             <Avatar className="w-10 h-10">
                                 <AvatarImage src="/professional-woman-avatar.png" alt="User Avatar"/>
                                 <AvatarFallback className="bg-blue-600 text-white">
-                                    <Image src={user?.profile_picture || ''} alt="Xasanova Go'zal"/>
+                                    <Image src={user?.profile_picture || ''} alt="Xasanova Go'zal" width={100} height={100}/>
                                 </AvatarFallback>
                             </Avatar>
                         </div>

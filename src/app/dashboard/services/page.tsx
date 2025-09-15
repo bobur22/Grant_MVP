@@ -51,7 +51,7 @@ export default function ServicesPage() {
                 <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-300">
                         <Image src={user?.profile_picture || ''} alt="User Avatar"
-                               className="w-full h-full object-cover"/>
+                               className="w-full h-full object-cover" width={100} height={100} />
                     </div>
                     <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
@@ -83,6 +83,7 @@ export default function ServicesPage() {
                                     src={service.image || "/placeholder.svg"}
                                     alt={service.image || ''}
                                     className="w-full h-full object-cover"
+                                    width={100} height={100}
                                 />
                             </div>
                             <h3 className="text-gray-800 font-medium mb-4 text-sm leading-tight">{service?.title}</h3>

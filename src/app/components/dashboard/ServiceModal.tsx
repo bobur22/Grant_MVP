@@ -79,6 +79,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                       src={service.image || "/placeholder.svg"}
                       alt={service.title || ''}
                       className="w-[76px] h-full object-cover"
+                      width={100} height={100}
                     />
                   </div>
                 </div>

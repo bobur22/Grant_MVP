@@ -145,6 +145,7 @@ export default function ApplicationWizard({isOpen, onClose, service}: Applicatio
                                     className="w-16 h-16 bg-white rounded-lg p-2 flex items-center justify-center flex-shrink-0">
                                     <Image src={service.image || "/placeholder.svg"}
                                            alt={service.title || ''}
+                                           width={100} height={100}
                                            className="w-[30px] h-full object-cover"/>
                                 </div>
                                 <div>

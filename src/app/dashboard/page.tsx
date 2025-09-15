@@ -145,7 +145,7 @@ export default function DashboardPage() {
                         <Avatar className="w-20 h-20">
                             <AvatarImage src="/placeholder.svg?height=80&width=80"/>
                             <AvatarFallback className="bg-blue-600 text-white text-lg">
-                                <Image src={user.profile_picture || ''} alt="Xasanova go'zal"/>
+                                <Image src={user.profile_picture || ''} alt="Xasanova go'zal" width={100} height={100}/>
                             </AvatarFallback>
                         </Avatar>
                         <div>

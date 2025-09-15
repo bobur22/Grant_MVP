@@ -1,16 +1,17 @@
 "use client"
 
+import { use } from 'react'
 import {ProtectedRoute} from "@/components/ProtectedRoute";
 import React, {useEffect, useState} from "react";
 import api from "@/lib/api";
 
 
-import {Check} from 'lucide-react'
+import {Check, Key} from 'lucide-react'
 import {cn} from "@/lib/utils";
 import Image from "next/image";
 
 interface Props {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }
 
 interface IApplicationDetails {
@@ -69,7 +70,7 @@ const statuses = [
 
 export default function ApplicationDetail({params}: Props) {
     const [detail, setDetail] = useState<IApplicationDetails>();
-    const {id} = params
+    const {id} = use(params)
 
 
     const getApplicationDetails = async () => {
@@ -78,6 +79,7 @@ export default function ApplicationDetail({params}: Props) {
     }
 
     const generateImage = (url: string | undefined): string => {
+        if (!url) return '/default-image.jpg' // undefined bo'lsa default image qaytarish
         return `https://grand-production.up.railway.app${url}`
     }
 
@@ -95,8 +97,9 @@ export default function ApplicationDetail({params}: Props) {
                 <div className='flex items-center justify-between mb-8'>
                     <div className='flex items-center gap-6'>
                         <div className='w-[100px] h-[100px] bg-white rounded-full overflow-hidden'>
-                            <Image src={generateImage(detail?.xizmat_rasmi)} alt="zulfiya"
-                                   className='w-full h-full object-cover'/>
+                            <Image  src={detail?.xizmat_rasmi ? generateImage(detail.xizmat_rasmi) : '/default-image.jpg'} alt="zulfiya"
+                            width={50} height={100}
+                                   className='w-full h-full object-contain'/>
                         </div>
                         <p className='text-[18px] text-white font-medium'>{detail?.xizmat_nomi}</p>
                     </div>
@@ -107,7 +110,7 @@ export default function ApplicationDetail({params}: Props) {
                     <div className='absolute -top-[14px] flex items-center w-[calc(100%-160px)]'>
                         {statuses.map((item, index) =>
                             <>
-                                <div className='min-w-10 h-10 p-1 rounded-full bg-white'>
+                                <div key={index} className='min-w-10 h-10 p-1 rounded-full bg-white'>
                                     <div
                                         className={cn(item.value === detail?.holati_code ? 'bg-[#00E82B]' : 'bg-[#013870]', 'w-full h-full rounded-full  flex items-center justify-center')}>
                                         <Check className='text-white'/>

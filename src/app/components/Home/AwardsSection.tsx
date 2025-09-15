@@ -51,6 +51,8 @@ export function AwardsSection() {
               <CardContent className="p-6 text-center">
                 <div className="mb-6">
                   <Image
+                  width={96}
+                  height={96}
                     src={award.image || "/placeholder.svg"}
                     alt={award.name}
                     className="w-24 h-24 mx-auto object-contain"

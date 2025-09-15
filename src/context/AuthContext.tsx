@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import {
+import api, {
   loginUser,
   logoutUser,
   getUserProfile,
@@ -21,6 +21,9 @@ interface AuthContextType {
   error: string | null;
   clearError: () => void;
   refreshUserProfile: () => Promise<void>;
+  unreadNotificationCount: number;
+  setUnreadNotificationCount: (count: number) => void;
+  decrementUnreadCount: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -46,7 +49,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   
     // isAuthenticated ni dinamik hisoblash o&apos;rniga state sifatida qo&apos;shamiz
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   
+
+     // Notification stats olish funksiyasi
+  const fetchNotificationStats = async () => {
+    try {
+      const response = await api.get('/notifications/stats/');
+      setUnreadNotificationCount(response.data.unread_count);
+    } catch (error) {
+      console.error('Failed to fetch notification stats:', error);
+    }
+  };
+
+  // Unread count ni kamaytirish funksiyasi
+  const decrementUnreadCount = () => {
+    setUnreadNotificationCount(prev => Math.max(0, prev - 1));
+  };
     // Sahifa yuklanganda foydalanuvchi ma'lumotlarini tekshirish
     useEffect(() => {
       const initializeAuth = async () => {
@@ -60,9 +79,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               const userProfile = await getUserProfile();
               setUser(userProfile);
               setIsAuthenticated(true);
+               await fetchNotificationStats();
               console.log('User profile loaded:', userProfile);
             } catch (profileError) {
               console.error('Failed to load profile:', profileError);
+
+               // User mavjud bo'lsa notification stats olish
+           
               // Profile olishda xatolik bo&apos;lsa, tokendan foydalanib dummy user yaratamiz
               const token = getAccessToken();
               if (token) {
@@ -73,6 +96,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                   last_name: ''
                 });
                 setIsAuthenticated(true);
+                 // Dummy user uchun ham notification stats olish
+              await fetchNotificationStats();
               }
             }
           } else {
@@ -81,12 +106,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             await logoutUser().then(() => router.push('/'))
             setUser(null);
             setIsAuthenticated(false);
+            setUnreadNotificationCount(0);
           }
         } catch (error) {
           console.error('Failed to initialize auth:', error);
           await logoutUser().then(() => router.push('/'));
           setUser(null);
           setIsAuthenticated(false);
+          setUnreadNotificationCount(0);
         } finally {
           setIsLoading(false);
           console.log('Auth initialization complete');
@@ -120,6 +147,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         
         // Authenticated holatini o&apos;rnatish
         setIsAuthenticated(true);
+         // Login qilgandan keyin notification stats olish
+      await fetchNotificationStats();
         console.log('Login successful, user authenticated');
         
       } catch (error: any) {
@@ -154,6 +183,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setUser(null);
         setError(null);
         setIsAuthenticated(false);
+        setUnreadNotificationCount(0);
         setIsLoading(false);
       }
     };
@@ -182,6 +212,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       error,
       clearError,
       refreshUserProfile,
+    unreadNotificationCount,
+    setUnreadNotificationCount,
+    decrementUnreadCount,
     };
   
     return (
