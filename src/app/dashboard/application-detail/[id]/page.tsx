@@ -109,8 +109,8 @@ export default function ApplicationDetail({params}: Props) {
                     <div className='h-3  bg-white'></div>
                     <div className='absolute -top-[14px] flex items-center w-[calc(100%-160px)]'>
                         {statuses.map((item, index) =>
-                            <>
-                                <div key={index} className='min-w-10 h-10 p-1 rounded-full bg-white'>
+                            <React.Fragment key={index}>
+                                <div className='min-w-10 h-10 p-1 rounded-full bg-white'>
                                     <div
                                         className={cn(item.value === detail?.holati_code ? 'bg-[#00E82B]' : 'bg-[#013870]', 'w-full h-full rounded-full  flex items-center justify-center')}>
                                         <Check className='text-white'/>
@@ -118,7 +118,7 @@ export default function ApplicationDetail({params}: Props) {
                                 </div>
                                 {index !== statuses.length - 1 && <div
                                     className={cn(item.value === detail?.holati_code ? 'bg-[#00E82B]' : 'bg-[#013870]', 'h-2 w-full')}></div>}
-                            </>
+                            </React.Fragment>
                         )}
                     </div>
                 </div>

@@ -6,13 +6,17 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
+import { Loader2 } from "lucide-react"
+import { useAuth } from "@/context/AuthContext" // Auth context import qiling
 
 export default function VerifyPage() {
   const [code, setCode] = useState<string[]>(["", "", "", "", "", ""])
   const [countdown, setCountdown] = useState(60)
   const [isResendDisabled, setIsResendDisabled] = useState(true)
+  const [isVerifying, setIsVerifying] = useState(false)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const router = useRouter()
+  const { refreshUserProfile } = useAuth() // Auth contextdan refresh function
 
   useEffect(() => {
     // Focus first input on mount
@@ -30,15 +34,13 @@ export default function VerifyPage() {
   }, [countdown, isResendDisabled])
 
   const handleInputChange = (index: number, value: string) => {
-    // Only allow digits
     if (!/^\d*$/.test(value)) return
 
     const newCode = [...code]
-    newCode[index] = value.slice(-1) // Only take the last character
+    newCode[index] = value.slice(-1)
 
     setCode(newCode)
 
-    // Auto-focus next input
     if (value && index < 5) {
       inputRefs.current[index + 1]?.focus()
     }
@@ -46,7 +48,6 @@ export default function VerifyPage() {
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
     if (e.key === "Backspace" && !code[index] && index > 0) {
-      // Focus previous input on backspace if current is empty
       inputRefs.current[index - 1]?.focus()
     }
   }
@@ -62,19 +63,47 @@ export default function VerifyPage() {
 
     setCode(newCode)
 
-    // Focus the next empty input or the last one
     const nextIndex = Math.min(pastedData.length, 5)
     inputRefs.current[nextIndex]?.focus()
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const fullCode = code.join("")
 
     if (fullCode.length === 6) {
-      console.log("[v0] Verification code:", fullCode)
-      alert("Kod tasdiqlandi!")
-      router.push("/dashboard") // Redirect to dashboard after successful verification
+      setIsVerifying(true)
+
+      try {
+        console.log("Verification code:", fullCode)
+        
+        // Real API call bo'lishi kerak:
+        // await api.post('/accounts/verify/', { code: fullCode })
+        
+        // Biroz kutish (real API ni taqlid qilish)
+        await new Promise(resolve => setTimeout(resolve, 1500))
+        
+        console.log("Kod muvaffaqiyatli tasdiqlandi!")
+        
+        // User profileni yangilash - BU MUHIM QISM!
+        try {
+          await refreshUserProfile()
+          console.log("User profile refreshed successfully")
+        } catch (error) {
+          console.error("Failed to refresh user profile:", error)
+        }
+        
+        // Dashboard ga yo'naltirish
+        router.push("/dashboard")
+        
+      } catch (error) {
+        console.error("Verification error:", error)
+        // Demo uchun xatolik bo'lganda ham dashboard ga yuboramiz
+        // Lekin real projectda error handling qilish kerak
+        router.push("/dashboard")
+      } finally {
+        setIsVerifying(false)
+      }
     }
   }
 
@@ -83,7 +112,7 @@ export default function VerifyPage() {
     setIsResendDisabled(true)
     setCode(["", "", "", "", "", ""])
     inputRefs.current[0]?.focus()
-    console.log("[v0] Resending verification code...")
+    console.log("Resending verification code...")
   }
 
   const isFormValid = code.every((digit) => digit !== "")
@@ -99,7 +128,6 @@ export default function VerifyPage() {
         <h1 className="text-2xl font-bold text-white mb-8">Kodni kiriting</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* OTP Input Boxes */}
           <div className="flex justify-center gap-3 mb-6">
             {code.map((digit, index) => (
               <Input
@@ -112,21 +140,27 @@ export default function VerifyPage() {
                 onChange={(e) => handleInputChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 onPaste={handlePaste}
+                disabled={isVerifying}
                 className="w-12 h-12 text-center text-xl font-bold bg-transparent border-2 border-gray-400 text-white focus:border-orange-400 focus:ring-orange-400 rounded-lg"
               />
             ))}
           </div>
 
-          {/* Submit Button */}
           <Button
             type="submit"
-            disabled={!isFormValid}
+            disabled={!isFormValid || isVerifying}
             className="w-full bg-orange-500 text-white hover:bg-orange-600 disabled:bg-gray-600 disabled:cursor-not-allowed hover:scale-105 transition-all duration-200 py-3 text-lg font-medium"
           >
-            Kirish
+           {isVerifying ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Tasdiqlanmoqda...
+              </>
+            ) : (
+              'Kirish'
+            )}
           </Button>
 
-          {/* Resend Code */}
           <div className="text-center mt-4">
             {isResendDisabled ? (
               <p className="text-orange-400 text-sm">Kodni Qayta Yuborish {formatTime(countdown)}</p>

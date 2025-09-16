@@ -7,8 +7,10 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Eye, EyeOff, Calendar, Upload } from "lucide-react"
+import { Eye, EyeOff, Calendar } from "lucide-react"
 import Link from "next/link"
+import { registerUser, RegisterRequest } from "@/lib/api"
+import { toast } from "react-toastify"
 
 interface FormData {
   firstName: string
@@ -24,7 +26,7 @@ interface FormData {
   workplace: string
   passportSerial: string
   jshshir: string
-  photo: File | null
+  // photo: File | null
 }
 
 interface FormErrors {
@@ -34,6 +36,7 @@ interface FormErrors {
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false) // Loading state
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -48,16 +51,17 @@ export default function RegisterPage() {
     workplace: "",
     passportSerial: "",
     jshshir: "",
-    photo: null,
+    // photo: null,
   })
   const [errors, setErrors] = useState<FormErrors>({})
+  const [apiError, setApiError] = useState<string>("")
   const router = useRouter()
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
 
     // Name validations (letters only)
-    const nameRegex = /^[a-zA-ZÀ-ÿ\u0400-\u04FF\s]+$/
+    const nameRegex = /^[a-zA-ZÀ-ÿ\u0400-\u04FF\s']+$/
     if (!formData.firstName.trim()) {
       newErrors.firstName = "Ism majburiy"
     } else if (!nameRegex.test(formData.firstName)) {
@@ -70,7 +74,7 @@ export default function RegisterPage() {
       newErrors.lastName = "Familiya faqat harflardan iborat bo'lishi kerak"
     }
 
-    if (!formData.fatherName.trim()) {
+    if (!formData.fatherName.trim()) {  
       newErrors.fatherName = "Otasining ismi majburiy"
     } else if (!nameRegex.test(formData.fatherName)) {
       newErrors.fatherName = "Otasining ismi faqat harflardan iborat bo'lishi kerak"
@@ -145,18 +149,18 @@ export default function RegisterPage() {
     }
 
     // Photo validation
-    if (!formData.photo) {
-      newErrors.photo = "Foto majburiy"
-    } else {
-      const allowedTypes = ["image/jpeg", "image/png"]
-      const maxSize = 2 * 1024 * 1024 // 2MB
+    // if (!formData.photo) {
+    //   newErrors.photo = "Foto majburiy"
+    // } else {
+    //   const allowedTypes = ["image/jpeg", "image/png"]
+    //   const maxSize = 2 * 1024 * 1024 // 2MB
 
-      if (!allowedTypes.includes(formData.photo.type)) {
-        newErrors.photo = "Foto faqat JPG yoki PNG formatida bo'lishi kerak"
-      } else if (formData.photo.size > maxSize) {
-        newErrors.photo = "Foto hajmi 2MB dan oshmasligi kerak"
-      }
-    }
+    //   if (!allowedTypes.includes(formData.photo.type)) {
+    //     newErrors.photo = "Foto faqat JPG yoki PNG formatida bo'lishi kerak"
+    //   } else if (formData.photo.size > maxSize) {
+    //     newErrors.photo = "Foto hajmi 2MB dan oshmasligi kerak"
+    //   }
+    // }
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -168,28 +172,109 @@ export default function RegisterPage() {
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: "" }))
     }
+      // Clear API error when user changes form
+      if (apiError) {
+        setApiError("")
+      }
   }
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null
-    setFormData((prev) => ({ ...prev, photo: file }))
-    if (errors.photo) {
-      setErrors((prev) => ({ ...prev, photo: "" }))
-    }
-  }
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0] || null
+  //   setFormData((prev) => ({ ...prev, photo: file }))
+  //   if (errors.photo) {
+  //     setErrors((prev) => ({ ...prev, photo: "" }))
+  //   }
+  // }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (validateForm()) {
-      console.log("Form Data:", formData)
-      router.push("/verify")
+    
+    if (!validateForm()) {
+      return
     }
+
+    setIsSubmitting(true)
+    setApiError("")
+
+    try {
+      const registerData: RegisterRequest = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        other_name: formData.fatherName,
+        email: formData.email,
+        address: formData.address,
+        birth_date: formData.dateOfBirth,
+        phone_number: formData.phoneNumber,
+        gender: formData.gender === "male" ? "M" : "F",
+        working_place: formData.workplace || "",
+        passport_number: formData.passportSerial,
+        pinfl: formData.jshshir,
+        password: formData.password,
+        confirm_password: formData.confirmPassword,
+      }
+
+      const response = await registerUser(registerData)
+      console.log("Registration successful:", response)
+
+      // Muvaffaqiyatli ro'yxatdan o'tishdan keyin verify page ga yo'naltirish
+      router.push("/verify")
+      
+    } catch (error: any) {
+      console.error("Registration error:", error)
+      let errorMessage = "Ro'yxatdan o'tishda xatolik yuz berdi"
+      // API xatoliklarini ko'rsatish
+      if (error.response) {
+         errorMessage = error.response.data?.message || 
+                           error.response.data?.detail || 
+                           error.response.data?.error ||
+                           "Ro'yxatdan o'tishda xatolik yuz berdi"
+        // Specific field errors handle qilish
+      if (error.response.data?.errors) {
+        const fieldErrors = error.response.data.errors
+        const firstError = Object.values(fieldErrors)[0]
+        if (Array.isArray(firstError)) {
+          errorMessage = firstError[0] as string
+        } else {
+          errorMessage = firstError as string
+        }
+      }
+      
+      console.log("API Error Response:", error.response.data)
+    } else if (error.request) {
+      errorMessage = "Internetga ulanishda muammo"
+    } else if (error.message) {
+      errorMessage = error.message
+    }
+    
+    // Error messageni ham toast va ham state ga set qilish
+    setApiError(errorMessage)
+    
+    // Manual toast error call (agar api.ts da showErrorMessage chaqirilmagan bo'lsa)
+    toast.error(errorMessage, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+    })
+    
+  } finally {
+    setIsSubmitting(false)
+  }
   }
 
   return (
     <div className="min-h-screen bg-[#1e3a8a] flex items-center justify-center p-4">
       <div className="bg-[#1e3a8a] rounded-xl p-8 shadow-lg w-full max-w-md text-center border border-blue-800">
         <h1 className="text-2xl font-bold text-white mb-8">Ro`yxatdan o`tish</h1>
+
+ {/* API Error Display */}
+ {apiError && (
+          <div className="mb-4 p-3 bg-red-500/20 border border-red-500 rounded-lg">
+            <p className="text-red-300 text-sm">{apiError}</p>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* First Name */}
@@ -201,7 +286,8 @@ export default function RegisterPage() {
               value={formData.firstName}
               onChange={(e) => handleInputChange("firstName", e.target.value)}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
-            />
+              disabled={isSubmitting}
+           />
             {errors.firstName && <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>}
           </div>
 
@@ -214,7 +300,8 @@ export default function RegisterPage() {
               value={formData.lastName}
               onChange={(e) => handleInputChange("lastName", e.target.value)}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
-            />
+              disabled={isSubmitting}
+           />
             {errors.lastName && <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>}
           </div>
 
@@ -227,6 +314,7 @@ export default function RegisterPage() {
               value={formData.fatherName}
               onChange={(e) => handleInputChange("fatherName", e.target.value)}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
+              disabled={isSubmitting}
             />
             {errors.fatherName && <p className="text-red-400 text-xs mt-1">{errors.fatherName}</p>}
           </div>
@@ -234,7 +322,7 @@ export default function RegisterPage() {
           {/* Gender */}
           <div className="text-left">
             <label className="block text-white text-sm font-medium mb-2">Jinsi</label>
-            <Select value={formData.gender} onValueChange={(value) => handleInputChange("gender", value)}>
+            <Select value={formData.gender} onValueChange={(value) => handleInputChange("gender", value)}    disabled={isSubmitting}>
               <SelectTrigger className="w-full bg-transparent border-2 border-gray-400 text-white focus:border-orange-400 focus:ring-orange-400">
                 <SelectValue placeholder="Jinsini tanlang" />
               </SelectTrigger>
@@ -255,7 +343,8 @@ export default function RegisterPage() {
                 value={formData.dateOfBirth}
                 onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
                 className="w-full bg-transparent border-2 border-gray-400 text-white focus:border-orange-400 focus:ring-orange-400"
-              />
+                disabled={isSubmitting}
+            />
               <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-300 pointer-events-none" />
             </div>
             {errors.dateOfBirth && <p className="text-red-400 text-xs mt-1">{errors.dateOfBirth}</p>}
@@ -270,7 +359,8 @@ export default function RegisterPage() {
               value={formData.address}
               onChange={(e) => handleInputChange("address", e.target.value)}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
-            />
+              disabled={isSubmitting}
+           />
             {errors.address && <p className="text-red-400 text-xs mt-1">{errors.address}</p>}
           </div>
 
@@ -283,7 +373,8 @@ export default function RegisterPage() {
               value={formData.phoneNumber}
               onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
-            />
+              disabled={isSubmitting}
+          />
             {errors.phoneNumber && <p className="text-red-400 text-xs mt-1">{errors.phoneNumber}</p>}
           </div>
 
@@ -296,7 +387,8 @@ export default function RegisterPage() {
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
-            />
+              disabled={isSubmitting}
+           />
             {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
           </div>
 
@@ -310,12 +402,14 @@ export default function RegisterPage() {
                 value={formData.password}
                 onChange={(e) => handleInputChange("password", e.target.value)}
                 className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400 pr-12"
-              />
+                disabled={isSubmitting}
+            />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition-colors"
-              >
+                disabled={isSubmitting}
+            >
                 {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
               </button>
             </div>
@@ -332,12 +426,14 @@ export default function RegisterPage() {
                 value={formData.confirmPassword}
                 onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
                 className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400 pr-12"
-              />
+                disabled={isSubmitting}
+             />
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition-colors"
-              >
+                disabled={isSubmitting}
+            >
                 {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
               </button>
             </div>
@@ -353,7 +449,8 @@ export default function RegisterPage() {
               value={formData.workplace}
               onChange={(e) => handleInputChange("workplace", e.target.value)}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
-            />
+              disabled={isSubmitting}
+          />
           </div>
 
           {/* Passport Serial Number */}
@@ -365,7 +462,8 @@ export default function RegisterPage() {
               value={formData.passportSerial}
               onChange={(e) => handleInputChange("passportSerial", e.target.value.toUpperCase())}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
-            />
+              disabled={isSubmitting}
+           />
             {errors.passportSerial && <p className="text-red-400 text-xs mt-1">{errors.passportSerial}</p>}
           </div>
 
@@ -378,12 +476,13 @@ export default function RegisterPage() {
               value={formData.jshshir}
               onChange={(e) => handleInputChange("jshshir", e.target.value)}
               className="w-full bg-transparent border-2 border-gray-400 text-white placeholder:text-gray-300 focus:border-orange-400 focus:ring-orange-400"
-            />
+              disabled={isSubmitting}
+          />
             {errors.jshshir && <p className="text-red-400 text-xs mt-1">{errors.jshshir}</p>}
           </div>
 
           {/* Photo Upload */}
-          <div className="text-left">
+          {/* <div className="text-left">
             <label className="block text-white text-sm font-medium mb-2">Foto</label>
             <div className="relative">
               <Input
@@ -395,13 +494,14 @@ export default function RegisterPage() {
               <Upload className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-300 pointer-events-none" />
             </div>
             {errors.photo && <p className="text-red-400 text-xs mt-1">{errors.photo}</p>}
-          </div>
+          </div> */}
 
           <Button
             type="submit"
+            disabled={isSubmitting}
             className="w-full bg-orange-500 text-white hover:bg-orange-600 hover:scale-105 transition-all duration-200 py-3 text-lg font-medium mt-6"
           >
-            Hisob yaratish
+            {isSubmitting ? "Yuklanmoqda..." : "Hisob yaratish"}
           </Button>
 
           <div className="text-sm mt-4">

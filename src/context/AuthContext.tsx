@@ -67,61 +67,54 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setUnreadNotificationCount(prev => Math.max(0, prev - 1));
   };
     // Sahifa yuklanganda foydalanuvchi ma'lumotlarini tekshirish
-    useEffect(() => {
-      const initializeAuth = async () => {
-        try {
-          console.log('Initializing auth...');
-          const tokenValid = isTokenValid();
-          console.log('Token valid:', tokenValid);
-          
-          if (tokenValid) {
-            try {
-              const userProfile = await getUserProfile();
-              setUser(userProfile);
-              setIsAuthenticated(true);
-               await fetchNotificationStats();
-              console.log('User profile loaded:', userProfile);
-            } catch (profileError) {
-              console.error('Failed to load profile:', profileError);
+    // AuthContext.tsx da initializeAuth funksiyasini to'liq almashtiring:
 
-               // User mavjud bo'lsa notification stats olish
-           
-              // Profile olishda xatolik bo&apos;lsa, tokendan foydalanib dummy user yaratamiz
-              const token = getAccessToken();
-              if (token) {
-                setUser({
-                  id: 'temp-user',
-                  phone_number: 'Unknown',
-                  first_name: 'Foydalanuvchi',
-                  last_name: ''
-                });
-                setIsAuthenticated(true);
-                 // Dummy user uchun ham notification stats olish
-              await fetchNotificationStats();
-              }
-            }
-          } else {
-            // Token noto&apos;g'ri bo&apos;lsa tozalash
-            console.log('Token invalid, clearing...');
-            await logoutUser().then(() => router.push('/'))
-            setUser(null);
-            setIsAuthenticated(false);
-            setUnreadNotificationCount(0);
-          }
-        } catch (error) {
-          console.error('Failed to initialize auth:', error);
-          await logoutUser().then(() => router.push('/'));
+useEffect(() => {
+  const initializeAuth = async () => {
+    try {
+      console.log('Initializing auth...');
+      const tokenValid = isTokenValid();
+      console.log('Token valid:', tokenValid);
+      
+      if (tokenValid) {
+        try {
+          const userProfile = await getUserProfile();
+          setUser(userProfile);
+          setIsAuthenticated(true);
+          await fetchNotificationStats();
+          console.log('User profile loaded:', userProfile);
+        } catch (profileError) {
+          console.error('Failed to load profile:', profileError);
+          // Token mavjud ammo profile olishda xatolik - tokenlarni tozalash
+          console.log('Invalid token or profile error, clearing tokens...');
+          await logoutUser();
           setUser(null);
           setIsAuthenticated(false);
           setUnreadNotificationCount(0);
-        } finally {
-          setIsLoading(false);
-          console.log('Auth initialization complete');
+          // Login sahifasiga yo'naltirmaslik, faqat holatni tozalash
         }
-      };
-  
-      initializeAuth();
-    }, []);
+      } else {
+        // Token noto'g'ri bo'lsa tozalash
+        console.log('Token invalid, clearing...');
+        await logoutUser();
+        setUser(null);
+        setIsAuthenticated(false);
+        setUnreadNotificationCount(0);
+      }
+    } catch (error) {
+      console.error('Failed to initialize auth:', error);
+      await logoutUser();
+      setUser(null);
+      setIsAuthenticated(false);
+      setUnreadNotificationCount(0);
+    } finally {
+      setIsLoading(false);
+      console.log('Auth initialization complete');
+    }
+  };
+
+  initializeAuth();
+}, []);
   
     const login = async (credentials: LoginRequest): Promise<void> => {
       try {
