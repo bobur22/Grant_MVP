@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { Bell, Mail, MailOpen } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useAuth } from "@/context/AuthContext"
@@ -42,7 +41,7 @@ const formatTimestamp = (dateString: string) => {
 };
 
 export default function NotificationsPage() {
-  const { user } = useAuth();
+  const { user, decrementUnreadCount  } = useAuth();
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [stats, setStats] = useState({
     total_count: 0,
@@ -85,7 +84,8 @@ export default function NotificationsPage() {
         unread_count: prev.unread_count - 1,
         read_count: prev.read_count + 1
       }));
-      
+      // AuthContext dagi count ni ham kamaytirish
+      decrementUnreadCount();
     } catch (error) {
       console.error('Failed to mark notification as read:', error);
     }

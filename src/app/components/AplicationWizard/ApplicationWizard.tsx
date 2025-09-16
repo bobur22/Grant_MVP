@@ -10,6 +10,7 @@ import AchievementConfirmationStep from "./AchievementConfirmationStep"
 import InformationConfirmationStep from "./InformationConfirmationStep"
 import api from "@/lib/api";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
 
 interface ApplicationWizardProps {
     isOpen: boolean
@@ -23,6 +24,7 @@ interface ApplicationWizardProps {
 
 
 export default function ApplicationWizard({isOpen, onClose, service}: ApplicationWizardProps) {
+    const { setUnreadNotificationCount } = useAuth(); // AuthContext dan setUnreadNotificationCount funksiyasini olish
     const {
         currentStep,
         applicationData,
@@ -46,6 +48,16 @@ export default function ApplicationWizard({isOpen, onClose, service}: Applicatio
         onClose()
     }
 
+    // Notification stats ni yangilash funksiyasi
+    const fetchNotificationStats = async () => {
+        try {
+            const response = await api.get('/notifications/stats/');
+            setUnreadNotificationCount(response.data.unread_count);
+        } catch (error) {
+            console.error('Failed to fetch notification stats:', error);
+        }
+    };
+
     const handleSubmit = () => {
         const formValue = applicationData
         const formData = new FormData()
@@ -68,7 +80,11 @@ export default function ApplicationWizard({isOpen, onClose, service}: Applicatio
             }
         }
         api.post('applications/applications/create/', formData)
-            .then(() => handleClose())
+        .then(() => {
+            // Ariza muvaffaqiyatli yaratilgandan so'ng notification stats ni yangilash
+            fetchNotificationStats();
+            handleClose();
+        })
             .catch(() => {
                 alert('Ushbu xizmatga ariza allaqachon topshirilgansiz.')
             })
