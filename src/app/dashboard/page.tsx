@@ -267,9 +267,9 @@ export default function DashboardPage() {
                     {applications.length === 0 && (
                         <div className="p-8 text-center">
                             <p className="text-blue-300">Hozircha arizalar mavjud emas</p>
-                            <Button className="mt-4 bg-orange-500 hover:bg-orange-600 text-white">
-                                Yangi ariza berish
-                            </Button>
+                                <Button  onClick={() => router.push("/dashboard/services")} className="mt-4 bg-orange-500 hover:bg-orange-600 text-white">
+                                    Yangi ariza berish
+                                </Button>
                         </div>
                     )}
                 </CardContent>
