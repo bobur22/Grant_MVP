@@ -178,7 +178,7 @@ return (
                                 <div className="py-1">
                                     <DropdownMenuItem asChild>
                                         <Link 
-                                            href="/dashboard/profile" 
+                                            href="#" 
                                             className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
                                         >
                                             <User className="w-4 h-4" />
